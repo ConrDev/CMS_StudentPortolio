@@ -12,7 +12,7 @@
   <body>
     <div class="title">
         <div class="logo">
-            <a href="./index.php">LOGO</a>
+            <a href="../index.php">LOGO</a>
         </div>
 
         <h1>(Naam)'s Portfolio</h1>

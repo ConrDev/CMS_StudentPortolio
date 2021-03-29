@@ -1,0 +1,175 @@
+body{
+  background:#D7DEE4;
+}
+
+/* Navbar */
+.navbar {
+  min-height: 33px !important;
+  margin-bottom:0;
+  border-radius:0;
+  padding: 0;
+}
+
+.navbar-nav > li > a, .navbar-brand{
+  padding-top:6px !important;
+  padding-bottom:6px !important;
+  line-height: 33px;
+  /* height: 33px; */
+}
+
+.navbar-light {
+  background-color: #6B7A99;
+  border-color: #92A7BA;
+}
+.navbar-light .navbar-brand {
+  color: #E8ECEF;
+}
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+  color: #B7D1E2;
+}
+.navbar-light .navbar-text {
+  color: #E8ECEF;
+}
+.navbar-light .navbar-nav > li > a {
+  color: #E8ECEF;
+}
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus {
+  color: #B7D1E2;
+}
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus {
+  color: #B7D1E2;
+  background-color: #92A7BA;
+}
+.navbar-light .navbar-nav > .open > a,
+.navbar-light .navbar-nav > .open > a:hover,
+.navbar-light .navbar-nav > .open > a:focus {
+  color: #B7D1E2;
+  background-color: #92A7BA;
+}
+.navbar-light .navbar-toggler {
+  border-color: #92A7BA;
+}
+.navbar-light .navbar-toggler:hover,
+.navbar-light .navbar-toggler:focus {
+  background-color: #6B7A99;
+}
+.navbar-light .navbar-toggler .icon-bar {
+  background-color: #E8ECEF;
+}
+.navbar-light .navbar-collapse,
+.navbar-light .navbar-form {
+  border-color: #E8ECEF;
+}
+.navbar-light .nav-link {
+  color: #E8ECEF !important;
+}
+.navbar-light .nav-link:hover {
+  color: #B7D1E2  !important;
+}
+
+/* Custom */
+.main-color-bg{
+  background-color: #92A7BA !important;
+  border-color: #92A7BA !important;
+  color:#ffffff !important;
+}
+
+/* Header */
+#header{
+  background:#333333;
+  color:#ffffff;
+  height: 75px;
+  /* line-height: 75px; */
+  margin-bottom: 15px;
+}
+
+#header h1 {
+  line-height: 75px;
+}
+
+#header small {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+#header .create{
+  line-height: 75px;
+}
+
+/* Breadcrumb */
+.breadcrumb{
+  background:#cccccc;
+  color:#333333;
+}
+
+.breadcrumb a{
+  color:#333333;
+}
+
+/* Progress Bars */
+.progress-bar{
+  background:#333333;
+  color:#ffffff;
+}
+
+/* Table scroll */
+.table-scrollbar {
+  position: relative;
+  height: 250px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+.table-users thead tr:nth-child(1) th{
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dash-box{
+  text-align:center;
+}
+
+.website-cards .card {
+  background-color: rgba(0,0,0,.05);
+}
+
+#login{
+  margin-top:30px;
+}
+
+/* Footer */
+#footer{
+  background:#333333;
+  color:#ffffff;
+  text-align:center;
+  padding:30px;
+  margin-top:30px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+
+@media (max-width: 767px) {
+  .navbar-light .navbar-nav .open .dropdown-menu > li > a {
+    color: #E8ECEF;
+  }
+  .navbar-light .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-light .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #B7D1E2;
+  }
+  .navbar-light .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-light .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-light .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #B7D1E2;
+    background-color: #6B7A99;
+  }
+}
