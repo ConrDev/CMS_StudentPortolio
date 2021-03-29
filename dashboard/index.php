@@ -67,7 +67,7 @@
   <section id="breadcrumb">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="active">Dashboard</li>
+        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
       </ol>
     </div>
   </section>
