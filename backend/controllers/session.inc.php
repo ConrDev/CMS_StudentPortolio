@@ -7,8 +7,8 @@ session_start();
 //     exit;
 // }
 
-if(!isset($_COOKIE['token'])) {
-    session_destroy();
+if(isset($_COOKIE['token'])) {
+    // session_destroy();
     header("location: ../index.php");
 }
 
