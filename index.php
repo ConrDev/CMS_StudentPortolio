@@ -36,6 +36,9 @@
                 <li class="nav-item">
                     <a class="nav-link">Projecten</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/login.php">Login</a>
+                </li>
             </ul>
         </div>
     </nav>
