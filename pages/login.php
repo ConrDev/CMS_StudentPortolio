@@ -134,7 +134,7 @@ require_once '../backend/controllers/session.inc.php';
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CSM Dashboard</p>
+      <p class="copyright">CMS Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>

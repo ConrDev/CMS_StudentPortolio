@@ -27,7 +27,7 @@
           <ul class="nav navbar-nav">
             <li><a href="index.html">Dashboard</a></li>
             <li><a href="pages.html">Pages</a></li>
-            <li class="active"><a href="posts.html">Posts</a></li>
+            <li class="active"><a href="posts.html">Projects</a></li>
             <li><a href="users.html">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

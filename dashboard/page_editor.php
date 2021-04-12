@@ -1,9 +1,6 @@
 <?php
-// require_once '../backend/controllers/session.inc.php';
 session_start();
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,10 +15,11 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dashboard.css">
 
-  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <a class="navbar-brand" href="#">CMS</a>
@@ -33,15 +31,15 @@ session_start();
         </button> -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"><a class="nav-link" href="index.php">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="pages.php">Pages</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
+          <li class="nav-item active"><a class="nav-link" href="pages.php">Pages</a></li>
           <li class="nav-item"><a class="nav-link" href="posts.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link">Welcome, <?php //if (!isset($_SESSION['email'])) $_SESSION['email']; else header('location: ../index.php'); ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?= $_SESSION['email'] ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
-          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -52,7 +50,7 @@ session_start();
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><span class="fas fa-cog" aria-hidden="true"></span> Dashboard <small>Manage Your Site</small></h1>
+          <h1><span class="fas fa-cog" aria-hidden="true"></span> Pages <small>Manage Site pages</small></h1>
         </div>
         <div class="col-md-2">
           <div class="dropdown create">
@@ -64,17 +62,18 @@ session_start();
               <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Page</a>
               <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPost">Add Post</a>
               <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </header>
 
   <section id="breadcrumb">
     <div class="container">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Pages</li>
       </ol>
     </div>
   </section>
@@ -122,105 +121,51 @@ session_start();
             </div>
           </div> -->
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 mb-5">
           <!-- Website Overview -->
-          <div class="card mb-3">
-              <h3 class="card-header main-color-bg">Website Overview</h3>
-            <div class="card-body row website-cards">
-              <div class="col-md-3">
-                <div class="card dash-box">
-                  <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-user pr-2" aria-hidden="true"></span>0</h2>
-                    <h4 class="card-text">Users</h4>
+          <div class="card">
+            <h3 class="card-header main-color-bg">Pages</h3>
+            <div class="card-body">
+              <form action="../backend/controllers/page_process.php" method="POST">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Page Title</label>
+                    <input name="title" type="text" name="title" class="form-control" placeholder="Page Title">
+                  </div>
+                  <div class="form-group">
+                    <label>Page Body</label>
+                    <!-- <textarea name="editor2" class="form-control" placeholder="Page Body"></textarea> -->
+                    <textarea id="editor" name="editor" class="form-control" placeholder="Page Body"></textarea>
+                  </div>
+                  <div class="dropdown-divider my-4"></div>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="published" name="published">
+                      <label class="custom-control-label text-muted" for="published">Published</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-block" name="submit">Bewerken</button>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card dash-box">
-                  <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-list-alt pr-2" aria-hidden="true"></span>0</h2>
-                    <h4 class="card-text">Pages</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card dash-box">
-                  <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-pencil-alt pr-2" aria-hidden="true"></span>0</h2>
-                    <h4 class="card-text">Posts</h4>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card dash-box">
-                  <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-chart-bar pr-2" aria-hidden="true"></span>0</h2>
-                    <h4 class="card-text">Visitors</h4>
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
+            <!-- <div class="table-users table-responsive-md table-wrapper-scroll-y table-scrollbar">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>Page Body</label>
+               
+                  <textarea id="editor" name="editor2" class="form-control" placeholder="Page Body"></textarea>
+                </div>
+                <div class="form-group">
+
+                  <input type="submit" value="submit ">
+                </div>
+              </div>
+            </div> -->
+            
           </div>
 
-          <!-- Latest Users -->
-          <div class="card ">
-              <h3 class="card-header">Latest Users</h3>
-            <div class="card-body">
-              <div class="table-users table-responsive-md table-wrapper-scroll-y table-scrollbar">
-                <table class="table table-striped table-hover">
-                  <thead>
-                    <tr>
-                      <th>Email</th>
-                      <th>Bedrijf's naam</th>
-                      <th>Joined</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -228,7 +173,7 @@ session_start();
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CMS Dashboard</p>
+      <p class="copyright">CSM Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>
@@ -240,7 +185,7 @@ session_start();
   <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form method="POST" action="../backend/controllers/projectcreator.php">
+        <form action="../../backend/controllers/pagecreator.php" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Add Page</h4>
@@ -248,7 +193,7 @@ session_start();
           <div class="modal-body">
             <div class="form-group">
               <label>Page Title</label>
-              <input type="text" class="form-control" placeholder="Page Title">
+              <input name="title" type="text" class="form-control" placeholder="Page Title">
             </div>
             <div class="form-group">
               <label>Page Body</label>
@@ -256,16 +201,16 @@ session_start();
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox"> Published
+                <input name="published" type="checkbox"> Published
               </label>
             </div>
             <div class="form-group">
               <label>Meta Tags</label>
-              <input type="text" class="form-control" placeholder="Add Some Tags...">
+              <input name="metatags" type="text" class="form-control" placeholder="Add Some Tags...">
             </div>
             <div class="form-group">
               <label>Meta Description</label>
-              <input type="text" class="form-control" placeholder="Add Meta Description...">
+              <input name="metadesc" type="text" class="form-control" placeholder="Add Meta Description...">
             </div>
           </div>
           <div class="modal-footer">
@@ -278,7 +223,7 @@ session_start();
   </div>
 
   <script>
-    CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor');
   </script>
 
   <!-- Optional JavaScript -->

@@ -15,7 +15,7 @@ session_start();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dashboard.css">
 
-  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <script src="http://cdn.ckeditor.com/5/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@ session_start();
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item active"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="posts.php">Posts</a></li>
+          <li class="nav-item"><a class="nav-link" href="posts.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -136,33 +136,33 @@ session_start();
                 <table class="table table-striped table-hover">
                 <thead>
                   <th>Title</th>
-                  <th>Published</th>
-                  <th>Created</th>
+                  <th>Openbaar</th>
+                  <th>Gewijzigd</th>
                   <th></th>
                 </thead>
                 <tr>
                   <td>Home</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
                 </tr>
                 <tr>
                   <td>About</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
                 </tr>
                 <tr>
                   <td>Services</td>
                   <td><span class="fas fa-times" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
                 </tr>
                 <tr>
                   <td>Contact</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 14, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
+                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
                 </tr>
               </table>
             </div>
@@ -187,7 +187,7 @@ session_start();
   <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form action="../backend/controllers/pagecreator.php" method="POST">
+        <form action="../backend/controllers/projectcreator.php" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Add Page</h4>

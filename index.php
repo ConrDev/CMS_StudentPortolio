@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 ?>
@@ -34,23 +35,21 @@ session_start();
     </header>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-            <div id="my-nav" class="collapse navbar-collapse container mr-5">
+            <div id="my-nav" class="collapse navbar-collapse container ">
                 <ul class="navbar-nav row col text-center">
                     <li class="col-md-3 nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="">Home</a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link">About Me</a>
+                        <a class="nav-link" href="pages/about.php">About Me</a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link">C.V.</a>
+                        <a class="nav-link" href="pages/cv.php">C.V.</a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link">Projecten</a>
+                        <a class="nav-link" href="pages/projecten.php">Projecten</a>
                     </li>
-                    
                 </ul>
-            </div>
                 <ul class="navbar-nav navbar-right col-md-2">
                         <?php
                             if(!isset($_COOKIE['token']) && !isset($_SESSION['token'])) {
@@ -59,7 +58,7 @@ session_start();
                                     <a class="nav-link" href="pages/login.php">Login</a>
                                 </li>
                         <?php
-                            } else if($_SESSION["level"] == 1) {
+                            } else if(isset($_SESSION["level"]) && $_SESSION["level"] == 1) {
                         ?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="dashboard/index.php">Dashboard</a>
@@ -74,13 +73,37 @@ session_start();
                             }
                         ?>
                 </ul>
+            </div>
+                <!-- <ul class="navbar-nav navbar-right col-md-2">
+                        <?php
+                            if(!isset($_COOKIE['token']) && !isset($_SESSION['token'])) {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/login.php">Login</a>
+                                </li>
+                        <?php
+                            } else if(isset($_SESSION["level"]) && $_SESSION["level"] == 1) {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard/index.php">Dashboard</a>
+                                </li>
+                        <?php
+                            } else {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/logout.php">Logout</a>
+                                </li>
+                        <?php
+                            }
+                        ?>
+                </ul> -->
     </nav>
 
     <section id="main">
         <div class="container">
             <div class="card text-center mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Welkom op mijn portfilio!</h5>
+                    <h5 class="card-title">Welkom op mijn protfolio!</h5>
                     <p class="card-text">(welkoms bericht)</p>
                     <a href="./pages/about.php" class="btn btn-primary">About Me</a>
                 </div>
