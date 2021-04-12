@@ -71,7 +71,7 @@ require_once '../backend/controllers/session.inc.php';
                     <form action="../backend/controllers/login.php" class="card-body mb-1" method="POST">
                       <div class="form-group">
                         <label for="inputEmail1"><b>E-mailaddres</b></label>
-                        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="E-mailaddres" name="email" required> 
+                        <input type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="E-mailaddres" name="email" required> 
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                       </div>
                       <div class="form-group">

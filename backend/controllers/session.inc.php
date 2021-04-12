@@ -11,5 +11,8 @@ if(isset($_COOKIE['token'])) {
     // session_destroy();
     header("location: ../index.php");
 }
+if(isset($_SESSION['token'])) {
+    header("location: ../index.php");
+}
 
 ?>

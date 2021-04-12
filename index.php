@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -13,51 +18,81 @@
 </head>
 
 <body>
-    <div class="title">
-        <div class="logo">
-            <a href="./index.php">LOGO</a>
+    <header id="title">
+        <div class="container-fluid">
+            <div class="row p-2">
+                <div class="col-md-2">
+                    <div class="logo">
+                        <a href="./index.php">LOGO</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h1 class="text-center">(Naam)'s Portfolio</h1>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <h1 class="text-center">(Naam)'s Portfolio</h1>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div id="my-nav" class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">About Me</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">C.V.</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">Projecten</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/login.php">Login</a>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+            <div id="my-nav" class="collapse navbar-collapse container mr-5">
+                <ul class="navbar-nav row col text-center">
+                    <li class="col-md-3 nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link">About Me</a>
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link">C.V.</a>
+                    </li>
+                    <li class="col-md-3 nav-item">
+                        <a class="nav-link">Projecten</a>
+                    </li>
+                    
+                </ul>
+            </div>
+                <ul class="navbar-nav navbar-right col-md-2">
+                        <?php
+                            if(!isset($_COOKIE['token']) && !isset($_SESSION['token'])) {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/login.php">Login</a>
+                                </li>
+                        <?php
+                            } else if($_SESSION["level"] == 1) {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard/index.php">Dashboard</a>
+                                </li>
+                        <?php
+                            } else {
+                        ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/logout.php">Logout</a>
+                                </li>
+                        <?php
+                            }
+                        ?>
+                </ul>
     </nav>
 
-    <section>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Welkom op mijn portfilio!</h5>
-                <p class="card-text">(welkoms bericht)</p>
-                <a href="./pages/about.php" class="btn btn-primary">About Me</a>
+    <section id="main">
+        <div class="container">
+            <div class="card text-center mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Welkom op mijn portfilio!</h5>
+                    <p class="card-text">(welkoms bericht)</p>
+                    <a href="./pages/about.php" class="btn btn-primary">About Me</a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="footer">
         <div class="row justify-content-center mr-auto">
-            <p class="copyright">&copy; website name</p>
-            <p class="splitter px-2">|</p>
-            <p class="credits">created with ❤️ by WeDevign</p>
+            <h3 class="copyright">&copy; website name</h3>
+            <h3 class="splitter px-2">|</h3>
+            <p class="credits py-2">created with ❤️ by WeDevign</p>
         </div>
     </footer>
 

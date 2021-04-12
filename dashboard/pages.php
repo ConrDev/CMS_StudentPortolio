@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +37,8 @@
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="#">Welcome, {USER}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?=$_SESSION['email']?></a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
           <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
         </ul>
       </div>
@@ -183,7 +187,7 @@
   <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form>
+        <form action="../backend/controllers/pagecreator.php" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Add Page</h4>
@@ -191,7 +195,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label>Page Title</label>
-              <input type="text" class="form-control" placeholder="Page Title">
+              <input name="title" type="text" class="form-control" placeholder="Page Title">
             </div>
             <div class="form-group">
               <label>Page Body</label>
@@ -199,16 +203,16 @@
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox"> Published
+                <input name="published" type="checkbox"> Published
               </label>
             </div>
             <div class="form-group">
               <label>Meta Tags</label>
-              <input type="text" class="form-control" placeholder="Add Some Tags...">
+              <input name="metatags" type="text" class="form-control" placeholder="Add Some Tags...">
             </div>
             <div class="form-group">
               <label>Meta Description</label>
-              <input type="text" class="form-control" placeholder="Add Meta Description...">
+              <input name="metadesc" type="text" class="form-control" placeholder="Add Meta Description...">
             </div>
           </div>
           <div class="modal-footer">

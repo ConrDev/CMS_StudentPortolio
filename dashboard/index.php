@@ -1,3 +1,7 @@
+<?php
+// require_once '../backend/controllers/session.inc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +37,9 @@
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="#">Welcome, {USER}</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
+          <li class="nav-item"><a class="nav-link">Welcome, <?=$_SESSION['email']?></a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -163,8 +168,8 @@
                 <table class="table table-striped table-hover">
                   <thead>
                     <tr>
-                      <th>Name</th>
                       <th>Email</th>
+                      <th>Bedrijf's naam</th>
                       <th>Joined</th>
                     </tr>
                   </thead>
