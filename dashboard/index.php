@@ -248,7 +248,7 @@ session_start();
           <div class="modal-body">
             <div class="form-group">
               <label>Page Title</label>
-              <input type="text" class="form-control" placeholder="Page Title">
+              <input name="title" type="text" class="form-control" placeholder="Page Title">
             </div>
             <div class="form-group">
               <label>Page Body</label>
@@ -256,16 +256,16 @@ session_start();
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox"> Published
+                <input name="published" type="checkbox"> Published
               </label>
             </div>
             <div class="form-group">
               <label>Meta Tags</label>
-              <input type="text" class="form-control" placeholder="Add Some Tags...">
+              <input name="metatags" type="text" class="form-control" placeholder="Add Some Tags...">
             </div>
             <div class="form-group">
               <label>Meta Description</label>
-              <input type="text" class="form-control" placeholder="Add Meta Description...">
+              <input name="metadesc" type="text" class="form-control" placeholder="Add Meta Description...">
             </div>
           </div>
           <div class="modal-footer">
