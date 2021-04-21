@@ -1,6 +1,15 @@
 <?php
-
+require_once '../backend/config/config.php';
 session_start();
+
+$homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
+$aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
+
+$home = mysqli_query($link, $homeSQL);
+$about = mysqli_query($link, $aboutSQL);
+
+$homepage = mysqli_fetch_array($home);
+$aboutpage = mysqli_fetch_array($about);
 
 ?>
 
@@ -24,7 +33,7 @@ session_start();
             <div class="row p-2">
                 <div class="col-md-2">
                     <div class="logo">
-                        <a href="../index.php">LOGO</a>
+                        <a href="./index.php">LOGO</a>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -38,10 +47,10 @@ session_start();
             <div id="my-nav" class="collapse navbar-collapse container ">
                 <ul class="navbar-nav row col text-center">
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="../index.php">Home</a>
+                        <a class="nav-link" href="../index.php"><?=$homepage["title"]; ?></a>
                     </li>
                     <li class="col-md-3 nav-item active">
-                        <a class="nav-link" href="./about.php">About Me</a>
+                        <a class="nav-link" href="./about.php"><?=$aboutpage["title"]; ?></a>
                     </li>
                     <li class="col-md-3 nav-item">
                         <a class="nav-link" href="./cv.php">C.V.</a>
@@ -102,10 +111,11 @@ session_start();
     <section id="main">
         <div class="container">
             <div class="card text-center p-5 mb-3">
-                <div class="card-body">
+                <!-- <div class="card-body">
                     <h5 class="card-title">Op deze pagine vertel ik wat over mijzelf</h5>
                     <p class="card-text">dit is een voorbeeld</p>
-                </div>
+                </div> -->
+                <?=$aboutpage["content"]; ?>
             </div>
         </div>
     </section>

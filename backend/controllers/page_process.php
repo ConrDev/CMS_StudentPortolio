@@ -1,16 +1,25 @@
 <?php
 require_once '../config/config.php';
 // obtain the POST
-$editor = $_POST['editor'];
-$title = $_POST['title'];
-$published = false;
+$pageID     = $_GET['pageID'];
+$editor     = $_POST['editor'];
+$title      = $_POST['title'];
+// $published  = $_POST['published'];
 
-if(isset($title, $editor2)){
-    $stmt = $link->prepare("INSERT INTO `pages` (`title`, `content`, `published`) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $uuid, $email, $hashPassword, $companyName);
-    $link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2')");
+if ($_POST['published'] == "on") {
+    $published = 1;
+} else {
+    $published = 0;
+}
+
+if(isset($title, $editor)){
+    $stmt = $link->prepare("UPDATE `pages` SET `title` = ?, `content` = ?, `published` =? WHERE `page_ID` = ? ");
+    $stmt->bind_param("ssii", $title, $editor, $published, $pageID);
+    $stmt->execute();
+    // $link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2')");
+    header("location: ../../dashboard/pages.php");
 } else{
-    header("location: ../../dashboard/page_editor.php");
+    header("location: ../../dashboard/pages.php");
 }
 
 ?>

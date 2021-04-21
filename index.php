@@ -2,13 +2,14 @@
 require_once 'backend/config/config.php';
 session_start();
 
-$id=1;
+$homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
+$aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
 
-$stmt = $link->prepare("SELECT `content` FROM `pages` WHERE `page_ID` = ?");
-$stmt->bind_param("s", $id);
-$stmt->execute();
+$home = mysqli_query($link, $homeSQL);
+$about = mysqli_query($link, $aboutSQL);
 
-$content = mysqli_fetch_array($stmt->get_result())[0];
+$homepage = mysqli_fetch_array($home);
+$aboutpage = mysqli_fetch_array($about);
 
 ?>
 
@@ -46,10 +47,10 @@ $content = mysqli_fetch_array($stmt->get_result())[0];
             <div id="my-nav" class="collapse navbar-collapse container ">
                 <ul class="navbar-nav row col text-center">
                     <li class="col-md-3 nav-item active">
-                        <a class="nav-link" href="">Home</a>
+                        <a class="nav-link" href=""><?=$homepage["title"]; ?></a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="pages/about.php">About Me</a>
+                        <a class="nav-link" href="pages/about.php"><?=$aboutpage["title"]; ?></a>
                     </li>
                     <li class="col-md-3 nav-item">
                         <a class="nav-link" href="pages/cv.php">C.V.</a>
@@ -110,12 +111,12 @@ $content = mysqli_fetch_array($stmt->get_result())[0];
     <section id="main">
         <div class="container">
             <div class="card text-center p-5 mb-3">
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Welkom op mijn protfolio!</h5>
+                <!-- <div class="card-body">
+                    <h5 class="card-title">Welkom op mijn protfolio!</h5>
                     <p class="card-text">(welkoms bericht)</p>
-                    <a href="./pages/about.php" class="btn btn-primary">About Me</a> -->
-                    <?=$content; ?>
-                </div>
+                    <a href="./pages/about.php" class="btn btn-primary">About Me</a>
+                </div> -->
+                <?=$homepage["content"]; ?>
             </div>
         </div>
     </section>

@@ -146,6 +146,13 @@ body{
   margin-top:30px;
 }
 
+.bootstrap-tagsinput .tag {
+  background-color: #92A7BA;
+  padding: .125rem .5rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
 /* Footer */
 #footer{
   background:#333333;

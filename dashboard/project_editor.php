@@ -1,6 +1,15 @@
 <?php
+require_once '../backend/config/config.php';
 session_start();
-require "../backend/config/config.php";
+
+$id=$_GET['id'];
+
+$stmt = $link->prepare("SELECT * FROM `projecten` WHERE `id` = ?");
+$stmt->bind_param("s", $id);
+$stmt->execute();
+
+$page = mysqli_fetch_array($stmt->get_result());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +24,11 @@ require "../backend/config/config.php";
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css">
+
+  <script src="../JS/ckeditor/ckeditor.js"></script>
   
-  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -128,22 +140,26 @@ require "../backend/config/config.php";
             <h3 class="card-header main-color-bg">Pages</h3>
             <div class="card-body">
 
-              <form action="../backend/controllers/page_process.php" method="POST">
+              <form action="../backend/controllers/project_process.php?id=<?=$_GET['id']; ?>" method="POST">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Page Title</label>
-                    <input name="title" type="text" name="title" class="form-control" placeholder="Page Title">
+                    <label>Pagina Naam</label>
+                    <input name="title" type="text" name="title" class="form-control" value="<?=$page["Name"];?>">
                   </div>
                   <div class="form-group">
-                    <label>Page Body</label>
+                    <label>Inhoud</label>
                     <!-- <textarea name="editor2" class="form-control" placeholder="Page Body"></textarea> -->
-                    <textarea id="editor" name="editor" class="form-control" placeholder="Page Body"></textarea>
+                    <textarea id="editor" name="editor" class="form-control" placeholder="inhoud"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Tags</label>
+                    <input name="Metatags" type="text" name="title" class="form-control" value="<?=$page["Metatags"];?> " data-role="tagsinput" >
                   </div>
                   <div class="dropdown-divider my-4"></div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="published" name="published">
-                      <label class="custom-control-label text-muted" for="published">Published</label>
+                      <input type="checkbox" class="custom-control-input" id="published" name="published" checked="<?=$page["Published"];?>">
+                      <label class="custom-control-label text-muted" for="published">Gepubliseerd</label>
                     </div>
                   </div>
                   <div class="form-group">
@@ -225,7 +241,13 @@ require "../backend/config/config.php";
   </div>
 
   <script>
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace("editor", {
+        skin: "n1theme"
+    });
+    CKEDITOR.config.contentsCss = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css";
+    CKEDITOR.scriptLoader.load("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js");
+
+    CKEDITOR.instances.editor.setData('<?=preg_replace( "/\r|\n/", "", $page["Content"]); ?>');
   </script>
 
   <!-- Optional JavaScript -->
@@ -233,6 +255,8 @@ require "../backend/config/config.php";
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 </body>
 
 </html>
+

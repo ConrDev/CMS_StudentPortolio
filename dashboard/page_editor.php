@@ -1,6 +1,15 @@
 <?php
+require_once '../backend/config/config.php';
 session_start();
-require "../backend/config/config.php";
+
+$id=$_GET['pageID'];
+
+$stmt = $link->prepare("SELECT * FROM `pages` WHERE `page_ID` = ?");
+$stmt->bind_param("s", $id);
+$stmt->execute();
+
+$page = mysqli_fetch_array($stmt->get_result());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +25,7 @@ require "../backend/config/config.php";
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dashboard.css">
 
-  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+  <script src="../JS/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -127,22 +136,23 @@ require "../backend/config/config.php";
           <div class="card">
             <h3 class="card-header main-color-bg">Pages</h3>
             <div class="card-body">
-              <form action="../backend/controllers/page_process.php" method="POST">
+
+              <form action="../backend/controllers/page_process.php?pageID=<?=$_GET['pageID']; ?>" method="POST">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Page Title</label>
-                    <input name="title" type="text" name="title" class="form-control" placeholder="Page Title">
+                    <label>Pagina Naam</label>
+                    <input name="title" type="text" name="title" class="form-control" value="<?=$page["title"];?>">
                   </div>
                   <div class="form-group">
-                    <label>Page Body</label>
+                    <label>Inhoud</label>
                     <!-- <textarea name="editor2" class="form-control" placeholder="Page Body"></textarea> -->
-                    <textarea id="editor" name="editor" class="form-control" placeholder="Page Body"></textarea>
+                    <textarea id="editor" name="editor" class="form-control" placeholder="inhoud"></textarea>
                   </div>
                   <div class="dropdown-divider my-4"></div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="published" name="published">
-                      <label class="custom-control-label text-muted" for="published">Published</label>
+                      <input type="checkbox" class="custom-control-input" id="published" name="published" checked="<?=$page["published"];?>">
+                      <label class="custom-control-label text-muted" for="published">Gepubliseerd</label>
                     </div>
                   </div>
                   <div class="form-group">
@@ -224,7 +234,13 @@ require "../backend/config/config.php";
   </div>
 
   <script>
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace("editor", {
+        skin: "n1theme"
+    });
+    CKEDITOR.config.contentsCss = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css";
+    CKEDITOR.scriptLoader.load("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js");
+
+    CKEDITOR.instances.editor.setData('<?=preg_replace( "/\r|\n/", "", $page["content"]); ?>');
   </script>
 
   <!-- Optional JavaScript -->
@@ -235,3 +251,4 @@ require "../backend/config/config.php";
 </body>
 
 </html>
+
