@@ -174,18 +174,18 @@ $project = mysqli_fetch_array($resultaat);
                                     <div class="card">
                                         <div class="uploader-info">
                                             <?php
-                                            $uploader = $reactie["id_Gebruiker"];
-                                            $userQuery = "SELECT * FROM gebruikers WHERE id='$uploader'";
+                                            $uploader = $reactie["gebruiker_id"];
+                                            $userQuery = "SELECT * FROM user WHERE id='$uploader'";
                                             $userResultaat = mysqli_query($link, $userQuery);
                                             $gebruiker = mysqli_fetch_array($userResultaat);
                                             ?>
-                                            <p class="gebruikersnaam"><?= $gebruiker['gebruikersnaam']; ?></p>
-                                            <p class="datum"><?= $gebruiker['join_datum']; ?></p>
+                                            <p class="gebruikersnaam"><?= $gebruiker['FirstName']; ?> <?= $gebruiker['LastName']; ?></p>
+                                            <p class="datum"><?= $gebruiker['Created']; ?></p>
                                             <?php
-                                            if (isset($_SESSION['level']) && $_SESSION['level'] == 1) {
+                                            if (isset($_SESSION['Level']) && $_SESSION['Level'] == 1) {
                                             ?>
                                                 <br>
-                                                <a href="../verwijder.php?soort=reactie&id=<?= $reactie['id']; ?>&categorie=<?= $recept['id_Categorie']; ?>&recept=<?= $id_recept; ?>" class="terug-btn">Verwijder</a>
+                                                <a href="../verwijder.php?soort=reactie&id=<?= $reactie['id']; ?>&project=<?= $id_project; ?>" class="terug-btn">Verwijder</a>
                                             <?php
                                             }
                                             ?>

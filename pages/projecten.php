@@ -91,28 +91,41 @@ $resultaat = mysqli_query($link, $query);
         <div class="container">
             <div class="card mb-3 p-5">
                 <div class="recept-container">
-                    <?php
+                <?php
                     if (mysqli_num_rows($resultaat) == 0) {
-                    ?>
+                ?>
                         <h3 class="text-center not-found">Sorry! Er zijn nog geen projecten</h3>
-                        <?php
+                <?php
                     } else {
                         while ($rij = mysqli_fetch_array($resultaat)) {
-                        ?>
+                ?>
                             <a href="./project.php?ID=<?= $rij['ID']; ?>" class="row no-gutters">
                                 <div class="col-md-12 card">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $rij['Name']; ?></h5>
+                                        <h3 class="card-title"><?= $rij['Name']; ?></h3>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text text-left"><small class="text-muted">Gepubliseerd op <?= $rij['DateCreated']; ?></small></p>
+                                        <p class="card-text float-right">
+                                        <?php
+                                            if ($rij['DateCreated'] == $rij['DateEdited']) {
+                                        ?>
+                                            <small class="text-muted">Gepubliseerd op <?= $rij['DateCreated']; ?></small>
+                                        <?php
+                                            } else {
+                                        ?>
+                                            <small class="text-muted">Bewerkt op <?= $rij['DateEdited']; ?></small>
+                                        <?php
+                                            }
+                                        ?>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
-                </div>
-        <?php
+                
+                <?php
                         }
                     }
-        ?>
+                ?>
+                </div>
             </div>
         </div>
     </section>
