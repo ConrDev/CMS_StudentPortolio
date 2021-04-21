@@ -8,6 +8,11 @@ $metatags = $_POST['metatags'];
 $metadesc = $_POST['metadesc'];
 $date = date("Y/m/d");
 
+if ($content == true){
+    $published = 1;
+} else {
+    $published = 0;
+};
 // create a database entry and return the id
  $link->query("INSERT INTO projecten (ID, Name, DateCreated, DateEdited, Metatags, Published, Content) VALUES (NULL, '$title', '$date', '$date', '$metatags', '$published', '$content')");
  $query = "SELECT ID FROM projecten WHERE Name = $title";

@@ -11,10 +11,10 @@ foreach($result as $kaas) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title><?=$kaas['Name'] ?></title>
+    <title><?php echo $kaas['Name']; ?></title>
 </head>
 <body>
-<?php echo $kaas['Content'] ?>
+<?php echo $kaas['Content']; ?>
 </body>
 </html>
 <?php

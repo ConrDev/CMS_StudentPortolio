@@ -256,7 +256,7 @@ session_start();
             </div>
             <div class="checkbox">
               <label>
-                <input name="published" type="checkbox"> Published
+                <input name="published" type="checkbox" value="true"> Published
               </label>
             </div>
             <div class="form-group">
