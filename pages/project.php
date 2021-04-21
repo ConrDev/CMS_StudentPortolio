@@ -2,13 +2,15 @@
 require '../backend/config/config.php';
 session_start();
 
-$id_project = $_GET['id'];
+$id_project = $_GET['ID'];
 $query = "SELECT * FROM projecten WHERE ID='$id_project'";
 $queryReacties = "SELECT * FROM reacties WHERE id_project='$id_project'";
 
 $resultaat = mysqli_query($link, $query);
 $resultaatReacties = mysqli_query($link, $queryReacties);
 
+$id = $id_project;
+require "../backend/controllers/visitors.php";
 // if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
 //     header('location: ./index.php');
 // }

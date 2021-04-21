@@ -12,6 +12,4 @@ $sql = "UPDATE visitors SET visits = visits+1 WHERE id = $id";
     } else {
         echo "no results";
     }
-    
-    $link->close();
 ?>

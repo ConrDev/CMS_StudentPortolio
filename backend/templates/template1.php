@@ -1,7 +1,8 @@
 <?php
 require "../config/config.php";
-$ID = $_GET["ID"];
-$query = "SELECT * FROM projecten WHERE ID = $ID";
+$id = $_GET["ID"];
+require "../controllers/visitors.php";
+$query = "SELECT * FROM projecten WHERE ID = '$id'";
 $result = mysqli_query($link, $query);
 foreach($result as $kaas) {
 ?>
