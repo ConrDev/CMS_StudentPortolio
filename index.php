@@ -4,12 +4,11 @@ session_start();
 
 $id=1;
 
-$stmt = $link->prepare("SELECT * FROM `pages` WHERE page_ID=?");
-$stmt->bind_param("i", $id);
+$stmt = $link->prepare("SELECT `content` FROM `pages` WHERE `page_ID` = ?");
+$stmt->bind_param("s", $id);
 $stmt->execute();
 
-$content = $stmt->get_result();
-print_r($content);
+$content = mysqli_fetch_array($stmt->get_result())[0];
 
 ?>
 
@@ -112,9 +111,10 @@ print_r($content);
         <div class="container">
             <div class="card text-center p-5 mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Welkom op mijn protfolio!</h5>
+                    <!-- <h5 class="card-title">Welkom op mijn protfolio!</h5>
                     <p class="card-text">(welkoms bericht)</p>
-                    <a href="./pages/about.php" class="btn btn-primary">About Me</a>
+                    <a href="./pages/about.php" class="btn btn-primary">About Me</a> -->
+                    <?=$content; ?>
                 </div>
             </div>
         </div>
