@@ -6,8 +6,13 @@ require_once '../config/config.php';
 // POST's
 $email          = $_POST['email'];
 $password       = $_POST['password'];
-$remember       = $_POST['remember']; 
-
+if(isset($_POST['remember'])){
+$remember       = $_POST['remember'];
+} else{
+$remember = false;
+}
+// $remember       = isset($_POST['remember']); 
+  
 // Check if they're not empty
 if (strlen($email) > 0 &&
     strlen($password) > 0) {
@@ -18,7 +23,13 @@ if (strlen($email) > 0 &&
     $user->execute();
     $result = mysqli_fetch_array($user->get_result());
 
-    $hashPassword = $result[0];
+    // $hashPassword = $result[0];
+
+    if(isset($result[0])){
+        $hashPassword = $result[0];
+    } else{
+        $hashPassword = false;
+    }
     
     // Checking if the passwords matchup
     if (password_verify($password, $hashPassword)) {

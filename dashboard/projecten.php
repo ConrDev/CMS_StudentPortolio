@@ -1,5 +1,12 @@
 <?php 
 session_start();
+
+require_once '../backend/config/config.php';
+
+$stmt = $link->prepare("SELECT * FROM `projecten` ORDER BY `DateEdited`");
+$stmt->bind_param("ssss", $uuid, $email, $hashPassword, $companyName);
+$link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2')");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +99,7 @@ session_start();
               </div>
               <span class="badge badge-pill badge-dark align-items-end">0</span>
             </a>
-            <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Posts
               </div>
@@ -126,7 +133,13 @@ session_start();
           <div class="card">
             <h3 class="card-header main-color-bg">Pages</h3>
             <div class="card-body">
-              <div class="table-users table-responsive-md">
+              <div class="row">
+                <div class="col-md-12">
+                  <input class="form-control" type="text" placeholder="Filter Pages...">
+                </div>
+              </div>
+              <br>
+              <div class="table-users table-responsive-md table-wrapper-scroll-y table-scrollbar">
                 <table class="table table-striped table-hover">
                 <thead>
                   <th>Title</th>
@@ -135,28 +148,25 @@ session_start();
                   <th></th>
                 </thead>
                 <tr>
-                  <td>Home</td>
+                  <td>Project 1</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
+                  <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
+                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
                 </tr>
                 <tr>
-                  <td>About Me</td>
+                  <td>Project 2</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
+                  <td>Dec 12, 2016</td>
+                  <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
+                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
                 </tr>
                 <tr>
-                  <td>C.V.</td>
+                  <td>Project 3</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
-                </tr>
-                <tr>
-                  <td>Projecten</td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 14, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="projecten.php">Bewerk</a></td>
+                  <td>Dec 12, 2016</td>
+                  <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
+                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
                 </tr>
               </table>
             </div>

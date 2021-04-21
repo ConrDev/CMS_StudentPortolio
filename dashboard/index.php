@@ -61,8 +61,7 @@ session_start();
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Page</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPost">Add Post</a>
+              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Project</a>
               <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
             </ul>
           </div>
@@ -95,7 +94,7 @@ session_start();
             </a>
             <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Posts
+                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
               <span class="badge badge-pill badge-dark align-items-end">0</span>
             </a>
@@ -147,7 +146,7 @@ session_start();
                 <div class="card dash-box">
                   <div class="card-body">
                     <h2 class="card-title"><span class="fas fa-pencil-alt pr-2" aria-hidden="true"></span>0</h2>
-                    <h4 class="card-text">Posts</h4>
+                    <h4 class="card-text">Projects</h4>
                   </div>
                 </div>
               </div>
