@@ -1,5 +1,5 @@
 <?php
-require_once '../backend/controllers/session.inc.php';
+// require_once '../backend/controllers/session.inc.php';
 ?>
 
 <!DOCTYPE html>

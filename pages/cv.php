@@ -15,7 +15,7 @@ session_start();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -37,19 +37,18 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
             <div id="my-nav" class="collapse navbar-collapse container ">
                 <ul class="navbar-nav row col text-center">
-                    <li class="col-md-3 nav-item active">
+                    <li class="col-md-3 nav-item">
                         <a class="nav-link" href="">Home</a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="pages/about.php">About Me</a>
+                        <a class="nav-link" href="./about.php">About Me</a>
+                    </li>
+                    <li class="col-md-3 nav-item active">
+                        <a class="nav-link" href="./cv.php">C.V.</a>
                     </li>
                     <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="pages/cv.php">C.V.</a>
+                        <a class="nav-link" href="./projecten.php">Projecten</a>
                     </li>
-                    <li class="col-md-3 nav-item">
-                        <a class="nav-link" href="pages/projecten.php">Projecten</a>
-                    </li>
-                    
                 </ul>
                 <ul class="navbar-nav navbar-right col-md-2">
                         <?php
@@ -104,7 +103,7 @@ session_start();
         <div class="container">
             <div class="card text-center mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Welkom op mijn portfilio!</h5>
+                    <h5 class="card-title">Welkom op mijn protfolio!</h5>
                     <p class="card-text">(welkoms bericht)</p>
                     <a href="./pages/about.php" class="btn btn-primary">About Me</a>
                 </div>

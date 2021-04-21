@@ -92,7 +92,7 @@ session_start();
               </div>
               <span class="badge badge-pill badge-dark align-items-end">0</span>
             </a>
-            <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Posts
               </div>
@@ -126,13 +126,7 @@ session_start();
           <div class="card">
             <h3 class="card-header main-color-bg">Pages</h3>
             <div class="card-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <input class="form-control" type="text" placeholder="Filter Pages...">
-                </div>
-              </div>
-              <br>
-              <div class="table-users table-responsive-md table-wrapper-scroll-y table-scrollbar">
+              <div class="table-users table-responsive-md">
                 <table class="table table-striped table-hover">
                 <thead>
                   <th>Title</th>
@@ -144,25 +138,25 @@ session_start();
                   <td>Home</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
+                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
                 </tr>
                 <tr>
-                  <td>About</td>
+                  <td>About Me</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
+                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
                 </tr>
                 <tr>
-                  <td>Services</td>
-                  <td><span class="fas fa-times" aria-hidden="true"></span></td>
+                  <td>C.V.</td>
+                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
+                  <td><a class="btn btn-outline-dark" href="page_editor.php">Bewerk</a></td>
                 </tr>
                 <tr>
-                  <td>Contact</td>
+                  <td>Projecten</td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 14, 2016</td>
-                  <td><a class="btn btn-default" href="page_editor.php">Edit</a></td>
+                  <td><a class="btn btn-outline-dark" href="projecten.php">Bewerk</a></td>
                 </tr>
               </table>
             </div>

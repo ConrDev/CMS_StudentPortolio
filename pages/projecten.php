@@ -100,11 +100,11 @@ $resultaat = mysqli_query($link, $query);
                         while ($rij = mysqli_fetch_array($resultaat)) {
                         ?>
                             <a href="./project.php?ID=<?= $rij['ID']; ?>" class="row no-gutters">
-                                <div class="col-md-8">
+                                <div class="col-md-12 card">
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $rij['Name']; ?></h5>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Gepubliseerd op <?= $rij['DateCreated']; ?></small></p>
+                                        <p class="card-text text-left"><small class="text-muted">Gepubliseerd op <?= $rij['DateCreated']; ?></small></p>
                                     </div>
                                 </div>
                             </a>
