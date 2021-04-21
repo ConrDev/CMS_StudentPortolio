@@ -93,7 +93,7 @@ require "../backend/config/config.php"
               </div>
               <span class="badge badge-pill badge-dark align-items-end">4</span>
             </a>
-            <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
