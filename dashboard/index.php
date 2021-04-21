@@ -2,6 +2,7 @@
 // require_once '../backend/controllers/session.inc.php';
 session_start();
 
+require "../backend/config/config.php"
 ?>
 
 <!DOCTYPE html>
@@ -90,19 +91,19 @@ session_start();
               <div>
                 <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pages
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end">4</span>
             </a>
             <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
             <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
           </div>
 
@@ -129,7 +130,7 @@ session_start();
               <div class="col-md-3">
                 <div class="card dash-box">
                   <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-user pr-2" aria-hidden="true"></span>0</h2>
+                    <h2 class="card-title"><span class="fas fa-user pr-2" aria-hidden="true"></span><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></h2>
                     <h4 class="card-text">Users</h4>
                   </div>
                 </div>
@@ -137,7 +138,7 @@ session_start();
               <div class="col-md-3">
                 <div class="card dash-box">
                   <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-list-alt pr-2" aria-hidden="true"></span>0</h2>
+                    <h2 class="card-title"><span class="fas fa-list-alt pr-2" aria-hidden="true"></span>4</h2>
                     <h4 class="card-text">Pages</h4>
                   </div>
                 </div>
@@ -145,7 +146,7 @@ session_start();
               <div class="col-md-3">
                 <div class="card dash-box">
                   <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-pencil-alt pr-2" aria-hidden="true"></span>0</h2>
+                    <h2 class="card-title"><span class="fas fa-pencil-alt pr-2" aria-hidden="true"></span><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></h2>
                     <h4 class="card-text">Projects</h4>
                   </div>
                 </div>
@@ -153,7 +154,7 @@ session_start();
               <div class="col-md-3">
                 <div class="card dash-box">
                   <div class="card-body">
-                    <h2 class="card-title"><span class="fas fa-chart-bar pr-2" aria-hidden="true"></span>0</h2>
+                    <h2 class="card-title"><span class="fas fa-chart-bar pr-2" aria-hidden="true"></span><?php $number = 0; $result = mysqli_query($link, "SELECT visits FROM visitors"); foreach($result as $result) {$number += $result['visits'];} echo $number?></h2>
                     <h4 class="card-text">Visitors</h4>
                   </div>
                 </div>
@@ -175,46 +176,13 @@ session_start();
                     </tr>
                   </thead>
                   <tbody>
+                  <?php $result = mysqli_query($link, "SELECT Email, CompanyName, Created  FROM user order by Created desc"); foreach($result as $result){?>
                     <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
+                      <td><?= $result['Email']; ?></td>
+                      <td><?= $result['CompanyName']; ?></td>
+                      <td><?= $result['Created']; ?></td>
                     </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
-                    <tr>
-                      <td>{USERNAME}</td>
-                      <td>{EMAIL}</td>
-                      <td>{JOIN DATE}</td>
-                    </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
