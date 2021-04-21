@@ -89,7 +89,7 @@ require_once '../backend/config/config.php';
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <div class="list-group">
+        <div class="list-group">
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
@@ -97,19 +97,19 @@ require_once '../backend/config/config.php';
               <div>
                 <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pages
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end">4</span>
             </a>
-            <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Posts
+                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
             <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
           </div>
 
@@ -148,9 +148,10 @@ require_once '../backend/config/config.php';
                   <th></th>
                   <th></th>
                 </thead>
+                <?php //$result = mysqli_query($link, "SELECT DateCreated, Name, Created  FROM user order by Created desc"); foreach($result as $result){?>
                 <tr>
                   <td>Project 1</td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
+                  <td><span class="fas fa-cross" aria-hidden="true"></span></td>
                   <td>Dec 12, 2016</td>
                   <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
                   <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
