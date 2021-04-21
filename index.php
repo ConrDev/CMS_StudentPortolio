@@ -1,6 +1,15 @@
 <?php
-
+require_once 'backend/config/config.php';
 session_start();
+
+$id=1;
+
+$stmt = $link->prepare("SELECT * FROM `pages` WHERE page_ID=?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$content = $stmt->get_result();
+print_r($content);
 
 ?>
 
@@ -101,7 +110,7 @@ session_start();
 
     <section id="main">
         <div class="container">
-            <div class="card text-center mb-3">
+            <div class="card text-center p-5 mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Welkom op mijn protfolio!</h5>
                     <p class="card-text">(welkoms bericht)</p>

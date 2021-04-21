@@ -3,9 +3,9 @@ session_start();
 
 require_once '../backend/config/config.php';
 
-$stmt = $link->prepare("SELECT * FROM `projecten` ORDER BY `DateEdited`");
-$stmt->bind_param("ssss", $uuid, $email, $hashPassword, $companyName);
-$link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2')");
+// $stmt = $link->prepare("SELECT * FROM `projecten` ORDER BY `DateEdited`");
+// $stmt->bind_param("ssss", $uuid, $email, $hashPassword, $companyName);
+// $link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2')");
 
 ?>
 <!DOCTYPE html>
@@ -145,6 +145,7 @@ $link->query("INSERT INTO pages (title, about) VALUES (NULL, '$title', '$editor2
                   <th>Title</th>
                   <th>Openbaar</th>
                   <th>Gewijzigd</th>
+                  <th></th>
                   <th></th>
                 </thead>
                 <tr>

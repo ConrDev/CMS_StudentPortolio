@@ -1,5 +1,8 @@
 <?php
 // require_once '../backend/controllers/session.inc.php';
+  
+  // include "../backend/controllers/errors.inc.php";
+  include "../backend/controllers/login.php";
 ?>
 
 <!DOCTYPE html>
@@ -68,34 +71,59 @@
                 </div> -->
                 <div class="tab-content" id="pills-tabContent">
                   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-                    <form action="../backend/controllers/login.php" class="card-body mb-1" method="POST">
+                    <form action="" class="card-body mb-1" method="POST">
+                      
                       <div class="form-group">
                         <label for="inputEmail1"><b>E-mailaddres</b></label>
                         <input type="text" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="E-mailaddres" name="email" required> 
+                        <small name="emailError" id="emailError" class="form-text text-muted">
+                            <?php if (!empty($errors['email'])) : ?>
+                              <div class="alert alert-danger pb-0" role="alert">
+                                  <p class="fas fa-exclamation-triangle"></p>
+                                  <?=$errors['email'];?>
+                              </div>
+                            <?php endif; ?>
+                        </small>
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                       </div>
                       <div class="form-group">
                         <label for="inputPassword1"><b>Wachtwoord</b></label>
-                        <input type="password" class="form-control" id="iInputPassword1" placeholder="Wachtwoord" name="password" required>
+                        <input type="password" class="form-control" id="iInputPassword1" placeholder="Wachtwoord" name="password" required >
+                        <small name="passwordError" id="passwordError" class="form-text text-muted">
+                            <?php if (!empty($errors['password'])) : ?>
+                              <div class="alert alert-danger pb-0" role="alert">
+                                  <p class="fas fa-exclamation-triangle"></p>
+                                  <?=$errors['password'];?>
+                              </div>
+                            <?php endif; ?>
+                        </small>
                       </div>
                       <div class="dropdown-divider my-4"></div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="remember" name="remember">
+                          <input type="checkbox" class="custom-control-input" id="remember" name="remember" >
                           <label class="custom-control-label text-muted" for="remember">Onthoud gegevens</label>
                         </div>
                       </div>
                       <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-block">LOGIN</button>
+                        <button type="submit" name="login" class="btn btn-default btn-block">LOGIN</button>
                       </div>
                     </form>
                   </div>
                   <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
-                    <form action="../backend/controllers/register.php" class="card-body mb-1" method="POST">
+                    <form action="" class="card-body mb-1" method="POST">
                       <div class="form-group">
                         <label for="inputEmail1"><b>E-mailaddres</b> <small class="text-muted">*</small></label>
                         <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="E-mailaddres" name="email" required>
                         <small id="emailHelp" class="form-text text-muted">We zullen uw e-mail nooit met andere delen.</small>
+                        <small name="emailError" id="emailError" class="form-text text-muted">
+                            <?php if (!empty($errors['repeatedEmail'])) : ?>
+                              <div class="alert alert-danger pb-0" role="alert">
+                                  <p class="fas fa-exclamation-triangle"></p>
+                                  <?=$errors['repeatedEmail'];?>
+                              </div>
+                            <?php endif; ?>
+                        </small>
                       </div>
                       <div class="form-group">
                         <label for="InputBedrijf"><b>Bedrijf's naam</b></label><label for="InputBedrijf" class="col-md-9 text-right text-muted"><small>(optioneel)</small></label>
@@ -110,6 +138,14 @@
                       <div class="form-group">
                         <label for="inputEmail1"><b>Bevestig Wachtwoord</b> <small class="text-muted">*</small></label>
                         <input type="password" class="form-control" id="inputPassword2" placeholder="Wachtwoord" name="confirmPassword" required>
+                        <small name="repeatedPasswordError" id="repeatedPasswordError" class="form-text text-muted">
+                            <?php if (!empty($errors['repeatedPassword'])) : ?>
+                              <div class="alert alert-danger pb-0" role="alert">
+                                  <p class="fas fa-exclamation-triangle"></p>
+                                  <?=$errors['repeatedPassword'];?>
+                              </div>
+                            <?php endif; ?>
+                        </small>
                       </div>
                       <div class="dropdown-divider my-4"></div>
                       <div class="form-group">
@@ -119,7 +155,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <button type="submit" class="btn btn-default btn-block">REGISTER</button>
+                        <button type="submit" name="register" class="btn btn-default btn-block">REGISTER</button>
                       </div>
                     </form>
                   </div>
