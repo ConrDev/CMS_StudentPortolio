@@ -148,28 +148,15 @@ require_once '../backend/config/config.php';
                   <th></th>
                   <th></th>
                 </thead>
-                <?php //$result = mysqli_query($link, "SELECT DateCreated, Name, Created  FROM user order by Created desc"); foreach($result as $result){?>
+                <?php $result = mysqli_query($link, "SELECT DateEdited, Name, Published  FROM projecten order by DateEdited desc"); foreach($result as $result){ if($result['Published'] == 1) {$icon = "check";} else {$icon = "times";}?>
                 <tr>
-                  <td>Project 1</td>
-                  <td><span class="fas fa-cross" aria-hidden="true"></span></td>
-                  <td>Dec 12, 2016</td>
+                  <td><?=$result['Name'] ?></td>
+                  <td><span class="fas fa-<?=$icon ?>" aria-hidden="true"></span></td>
+                  <td><?=$result['DateEdited'] ?></td>
                   <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
                   <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
                 </tr>
-                <tr>
-                  <td>Project 2</td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
-                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
-                </tr>
-                <tr>
-                  <td>Project 3</td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="project_editor.php">Bewerk</a></td>
-                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
-                </tr>
+                  <?php } ?>
               </table>
             </div>
           </div>
