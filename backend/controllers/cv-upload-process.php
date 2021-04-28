@@ -1,11 +1,13 @@
 <?php 
 session_start();
+require "../config/config.php";
+// $email = $_SESSION['email'];
 
-$email = $_SESSION['email'];
+$date = date("Y-m-d");
 
 $uploaddir = '../../assets/cv/';
 
-$filename = $_FILES["file"]["name"];
+$filename = $_FILES["file"]["name"]; // gdgfsg
 $file_ext = substr($filename, strripos($filename, '.')); // get file name
 
 $filesize = $_FILES["file"]["size"];
@@ -17,7 +19,7 @@ if (in_array($file_ext, $allowed_file_types) && ($filesize < 2000000)) {
 
 		foreach ($allowed_file_types as $fileType) {
 			
-			$tmpName = $uploaddir.$profile_ID.$fileType;
+			$tmpName = $uploaddir.$filename;
 
 			if (file_exists($tmpName)) {
 				unlink($tmpName);
@@ -27,8 +29,11 @@ if (in_array($file_ext, $allowed_file_types) && ($filesize < 2000000)) {
 			header("location: ../../index.php");
 		}
 		
-		move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir . $email . $file_ext);
-
+		move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir . $filename);
+		
+		$link->query("INSERT INTO cv (ID, DateCreated ,Name) VALUES (NULL,'$date', '$filename')");
+		// $query = "SELECT ID FROM projecten WHERE Name = '$title'";
+		$result = mysqli_query($link, $query);
 		header("location: ../../index.php");
 		exit;
     }

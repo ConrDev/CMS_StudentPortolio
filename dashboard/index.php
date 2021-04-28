@@ -42,7 +42,7 @@ require "../backend/config/config.php"
         <ul class="navbar-nav navbar-right">
           <li class="nav-item"><a class="nav-link">Welcome, <?php //if (!isset($_SESSION['email'])) $_SESSION['email']; else header('location: ../index.php'); ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
-          <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pages/loguit.php">loguit</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -86,6 +86,12 @@ require "../backend/config/config.php"
           <div class="list-group">
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
+            </a>
+            <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Header
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end">2</span>
             </a>
             <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>

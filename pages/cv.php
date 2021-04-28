@@ -61,13 +61,13 @@ session_start();
                             } else if(isset($_SESSION["level"]) && $_SESSION["level"] == 1) {
                         ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="dashboard/index.php">Dashboard</a>
+                                    <a class="nav-link" href="../dashboard/index.php">Dashboard</a>
                                 </li>
                         <?php
                             } else {
                         ?>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/logout.php">Logout</a>
+                                    <a class="nav-link" href="loguit.php">Loguit</a>
                                 </li>
                         <?php
                             }
@@ -103,9 +103,7 @@ session_start();
         <div class="container">
             <div class="card text-center mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Welkom op mijn protfolio!</h5>
-                    <p class="card-text">(welkoms bericht)</p>
-                    <a href="./pages/about.php" class="btn btn-primary">About Me</a>
+                    <iframe style="width: 100%; height: 30vw;" src="../assets/cv/<?=$_SESSION['email']; ?>.pdf" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
