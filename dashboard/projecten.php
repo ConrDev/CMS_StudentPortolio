@@ -154,7 +154,7 @@ require_once '../backend/config/config.php';
                   <td><span class="fas fa-<?=$icon ?>" aria-hidden="true"></span></td>
                   <td><?=$result['DateEdited'] ?></td>
                   <td><a class="btn btn-outline-dark" href="project_editor.php?id=<?=$result['ID']; ?>">Bewerk</a></td>
-                  <td><a class="btn btn-danger" href="project_editor.php">Verwijder</a></td>
+                  <td><a class="btn btn-danger" href="project_verwijder.php?id=<?=$result['ID']; ?>">Verwijder</a></td>
                 </tr>
                   <?php } ?>
               </table>
