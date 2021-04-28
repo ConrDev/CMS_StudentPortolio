@@ -142,6 +142,11 @@ body{
   background-color: rgba(0,0,0,.05);
 }
 
+.recept-container {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
 #login{
   margin-top:30px;
 }

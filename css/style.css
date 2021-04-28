@@ -93,6 +93,11 @@ body {
     height: 100%;
 }
 
+.recept-container {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
 /* Footer */
 #footer{
     background:#6B7A99;

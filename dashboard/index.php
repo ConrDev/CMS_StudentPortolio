@@ -62,9 +62,8 @@ require "../backend/config/config.php"
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Project</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
-            </ul>
+            <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
+            </div>
           </div>
         </div>
       </div>
@@ -87,9 +86,9 @@ require "../backend/config/config.php"
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
-            <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Header
+                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
               </div>
               <span class="badge badge-pill badge-dark align-items-end">2</span>
             </a>
@@ -105,12 +104,12 @@ require "../backend/config/config.php"
               </div>
               <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
-            <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <!-- <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
               </div>
               <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
-            </a>
+            </a> -->
           </div>
 
           <!-- <div class="card-body">

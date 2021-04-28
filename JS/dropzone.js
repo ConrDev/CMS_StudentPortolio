@@ -6,7 +6,7 @@ Dropzone.options.cvUpload = {
   uploadMultiple: false,
   parallelUploads: 1,
   maxFiles: 1,
-  acceptedFiles: ".pdf",
+  acceptedFiles: ".pdf, .jpg, .jpeg, .png",
   init: function() {
       console.log("ola seniorita");
     this.on("maxfilesexceeded", function(file) {
@@ -16,13 +16,14 @@ Dropzone.options.cvUpload = {
         //   window.location = window.location.href+'?eraseCache=true';
         // window.location.href = '../dashboard/pages.php';
     });
-    this.on("complete", function(file) {
-        console.log("ola senior");             
+    this.on("complete", function(file) {          
         // window.location = ;  
     });
     this.on("queuecomplete", function (file) {
-        console.log("ola senior"); 
-        window.location.href = '../dashboard/pages.php';
+        // window.location.href = '../dashboard/pages.php';
     //   window.location = window.location.href+'?eraseCache=true';
   });
 }};
+
+console.log("yoodsad");
+

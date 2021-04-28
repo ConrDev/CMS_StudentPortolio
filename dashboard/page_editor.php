@@ -69,10 +69,7 @@ $page = mysqli_fetch_array($stmt->get_result());
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Page</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPost">Add Post</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
-              </ul>
+            <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
             </div>
           </div>
         </div>
@@ -196,7 +193,7 @@ $page = mysqli_fetch_array($stmt->get_result());
   <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form action="../../backend/controllers/pagecreator.php" method="POST">
+        <form method="POST" action="../backend/controllers/projectcreator.php">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Add Page</h4>
@@ -208,11 +205,11 @@ $page = mysqli_fetch_array($stmt->get_result());
             </div>
             <div class="form-group">
               <label>Page Body</label>
-              <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
+              <textarea name="editor" class="form-control" placeholder="Page Body"></textarea>
             </div>
             <div class="checkbox">
               <label>
-                <input name="published" type="checkbox"> Published
+                <input name="published" type="checkbox" value="true"> Published
               </label>
             </div>
             <div class="form-group">

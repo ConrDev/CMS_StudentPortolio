@@ -59,10 +59,7 @@ session_start();
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Page</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPost">Add Post</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
-              </ul>
+            <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
             </div>
           </div>
         </div>
@@ -86,23 +83,23 @@ session_start();
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
+            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end">2</span>
+            </a>
             <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
                 <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pages
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end">4</span>
             </a>
-            <a href="posts.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Posts
+                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
-            </a>
-            <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              <div>
-                <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
-              </div>
-              <span class="badge badge-pill badge-dark align-items-end">0</span>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
           </div>
 

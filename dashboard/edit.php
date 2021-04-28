@@ -51,9 +51,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a type="button" data-toggle="modal" data-target="#addPage">Add Page</a></li>
-                <li><a href="#">Add Post</a></li>
-                <li><a href="#">Add User</a></li>
+              <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
               </ul>
             </div>
           </div>

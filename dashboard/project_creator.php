@@ -2,14 +2,6 @@
 require_once '../backend/config/config.php';
 session_start();
 
-$id=$_GET['id'];
-
-$stmt = $link->prepare("SELECT * FROM `projecten` WHERE `id` = ?");
-$stmt->bind_param("s", $id);
-$stmt->execute();
-
-$page = mysqli_fetch_array($stmt->get_result());
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +20,6 @@ $page = mysqli_fetch_array($stmt->get_result());
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css">
 
   <script src="../JS/ckeditor/ckeditor.js"></script>
-  
 </head>
 
 <body>
@@ -92,15 +83,9 @@ $page = mysqli_fetch_array($stmt->get_result());
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <div class="list-group">
+        <div class="list-group">
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
-            </a>
-            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              <div>
-                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
-              </div>
-              <span class="badge badge-pill badge-dark align-items-end">2</span>
             </a>
             <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
@@ -113,6 +98,12 @@ $page = mysqli_fetch_array($stmt->get_result());
                 <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
               </div>
               <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
+            </a>
+            <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
           </div>
 
@@ -137,11 +128,11 @@ $page = mysqli_fetch_array($stmt->get_result());
             <h3 class="card-header main-color-bg">Pages</h3>
             <div class="card-body">
 
-              <form action="../backend/controllers/project_process.php?id=<?=$_GET['id']; ?>" method="POST">
+              <form action="../backend/controllers/projectcreator.php" method="POST">
                 <div class="col-md-12">
                   <div class="form-group">
                     <label>Pagina Naam</label>
-                    <input name="title" type="text" name="title" class="form-control" value="<?=$page["Name"];?>">
+                    <input name="title" type="text" name="title" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Inhoud</label>
@@ -150,12 +141,12 @@ $page = mysqli_fetch_array($stmt->get_result());
                   </div>
                   <div class="form-group">
                     <label>Tags</label>
-                    <input name="Metatags" type="text" name="title" class="form-control" value="<?=$page["Metatags"]; ?>" data-role="tagsinput">
+                    <input name="metatags" type="text" name="title" class="form-control" data-role="tagsinput">
                   </div>
                   <div class="dropdown-divider my-4"></div>
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="published" name="published" checked="<?=$page["Published"]; ?>">
+                      <input type="checkbox" class="custom-control-input" id="published" name="published">
                       <label class="custom-control-label text-muted" for="published">Gepubliseerd</label>
                     </div>
                   </div>
@@ -194,57 +185,12 @@ $page = mysqli_fetch_array($stmt->get_result());
     </div>
   </footer>
 
-  <!-- Modals -->
-
-  <!-- Add Page -->
-  <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form action="../../backend/controllers/pagecreator.php" method="POST">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add Page</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label>Page Title</label>
-              <input name="title" type="text" class="form-control" placeholder="Page Title">
-            </div>
-            <div class="form-group">
-              <label>Page Body</label>
-              <textarea name="editor1" class="form-control" placeholder="Page Body"></textarea>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input name="published" type="checkbox"> Published
-              </label>
-            </div>
-            <div class="form-group">
-              <label>Meta Tags</label>
-              <input name="metatags" type="text" class="form-control" placeholder="Add Some Tags...">
-            </div>
-            <div class="form-group">
-              <label>Meta Description</label>
-              <input name="metadesc" type="text" class="form-control" placeholder="Add Meta Description...">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <script>
     CKEDITOR.replace("editor", {
         skin: "n1theme"
     });
     CKEDITOR.config.contentsCss = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css";
     CKEDITOR.scriptLoader.load("https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js");
-
-    CKEDITOR.instances.editor.setData('<?=preg_replace( "/\r|\n/", "", $page["Content"]); ?>');
   </script>
 
   <!-- Optional JavaScript -->

@@ -4,12 +4,15 @@ session_start();
 
 $homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
 $aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
+$logoSQL = "SELECT * FROM `header` WHERE `name` = 'logo'";
 
 $home = mysqli_query($link, $homeSQL);
 $about = mysqli_query($link, $aboutSQL);
+$logo = mysqli_query($link, $logoSQL);
 
 $homepage = mysqli_fetch_array($home);
 $aboutpage = mysqli_fetch_array($about);
+$logoIMG = mysqli_fetch_array($logo);
 
 ?>
 
@@ -33,10 +36,10 @@ $aboutpage = mysqli_fetch_array($about);
             <div class="row p-2">
                 <div class="col-md-2">
                     <div class="logo">
-                        <a href="./index.php">LOGO</a>
+                        <a href="./index.php"><img src="assets/images/<?=$logoIMG["content"]; ?>"></a>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 py-5">
                     <h1 class="text-center">(Naam)'s Portfolio</h1>
                 </div>
             </div>

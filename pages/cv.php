@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+require "../backend/config/config.php";
 ?>
 
 <!doctype html>
@@ -103,7 +103,11 @@ session_start();
         <div class="container">
             <div class="card text-center mb-3">
                 <div class="card-body">
-                    <iframe style="width: 100%; height: 30vw;" src="../assets/cv/<?=$_SESSION['email']; ?>.pdf" frameborder="0"></iframe>
+                <?php 
+                $result = mysqli_query($link, "SELECT Name FROM cv WHERE ID = 1");
+                $row = $result->fetch_assoc();
+                ?>
+                    <iframe style="width: 100%; height: 30vw;" src="../assets/cv/<?=$row['Name'];?>" frameborder="0"></iframe>
                 </div>
             </div>
         </div>

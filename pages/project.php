@@ -118,13 +118,13 @@ $project = mysqli_fetch_array($resultaat);
                             }
                             ?>
                             <li class="col-md-3 nav-item">
-                                <a href="./" class="terug-btn">Terug</a>
+                                <a href="../" class="terug-btn">Terug</a>
                             </li>
                             <?php
                             if (isset($_SESSION['email'])) {
                             ?>
                                 <li class="col-md-3 nav-item">
-                                    <a href="./reageer.php?project=<?= $project; ?>" class="reageer-btn">Reageer</a>
+                                    <!-- <a href="./reageer.php?project=<?= $project; ?>" class="reageer-btn">Reageer</a> -->
                                 </li>
                             <?php
                             }
@@ -167,7 +167,7 @@ $project = mysqli_fetch_array($resultaat);
 
                                 </div>
                             </div>
-                            <?php
+                            <!-- <?php
                             while ($reactie = mysqli_fetch_array($resultaatReacties)) {
                             ?>
                                 <div class="container">
@@ -199,7 +199,7 @@ $project = mysqli_fetch_array($resultaat);
                                 </div>
                             <?php
                             }
-                            ?>
+                            ?> -->
                         </div>
                     </div>
             </div>

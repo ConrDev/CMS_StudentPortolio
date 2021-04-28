@@ -2,10 +2,9 @@
 require_once '../config/config.php';
 // get the content
 $title = $_POST['title'];
-$content = $_POST['editor1'];
+$content = $_POST['editor'];
 $published = $_POST['published'];
 $metatags = $_POST['metatags'];
-$metadesc = $_POST['metadesc'];
 $date = date("Y/m/d");
 
 if ($content == true){
@@ -43,5 +42,5 @@ $link->query("INSERT INTO visitors (ID, visits) VALUES ('$id', '$title')");
 //     fclose($create_file);
 
 // send the user to the new page
-header("location:../templates/template1.php?ID=$id");
+header("location: ../../pages/projecten.php");
 ?>

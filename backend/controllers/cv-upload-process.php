@@ -31,10 +31,7 @@ if (in_array($file_ext, $allowed_file_types) && ($filesize < 2000000)) {
 		
 		move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir . $filename);
 		
-		$link->query("INSERT INTO cv (ID, DateCreated ,Name) VALUES (NULL,'$date', '$filename')");
-		// $query = "SELECT ID FROM projecten WHERE Name = '$title'";
-		$result = mysqli_query($link, $query);
-		header("location: ../../index.php");
+
 		exit;
     }
 ?>

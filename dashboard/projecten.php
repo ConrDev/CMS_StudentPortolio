@@ -66,10 +66,8 @@ require_once '../backend/config/config.php';
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Page</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPost">Add Post</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
-            </ul>
+            <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
+            </div>
           </div>
         </div>
       </div>
@@ -80,7 +78,7 @@ require_once '../backend/config/config.php';
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Pages</li>
+        <li class="breadcrumb-item active" aria-current="page">Projecten</li>
       </ol>
     </div>
   </section>
@@ -89,27 +87,27 @@ require_once '../backend/config/config.php';
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-        <div class="list-group">
+          <div class="list-group">
             <a href="index.html" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
+            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end">2</span>
+            </a>
             <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pages
+                <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pagina's
               </div>
               <span class="badge badge-pill badge-dark align-items-end">4</span>
             </a>
             <a href="projecten.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>
-                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projects
+                <span class="fas fa-pencil-alt mb-1" aria-hidden="true"></span> Projecten
               </div>
               <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT ID FROM projecten"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
-            </a>
-            <a href="users.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-              <div>
-                <span class="fas fa-user mb-1" aria-hidden="true"></span> Users
-              </div>
-              <span class="badge badge-pill badge-dark align-items-end"><?php $result = mysqli_query($link, "SELECT UUID FROM user"); $num_rows = mysqli_num_rows($result); echo "$num_rows\n";?></span>
             </a>
           </div>
 
@@ -131,7 +129,7 @@ require_once '../backend/config/config.php';
         <div class="col-md-9">
           <!-- Website Overview -->
           <div class="card">
-            <h3 class="card-header main-color-bg">Pages</h3>
+            <h3 class="card-header main-color-bg">Projecten</h3>
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
