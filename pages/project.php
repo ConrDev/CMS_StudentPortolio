@@ -2,6 +2,21 @@
 require '../backend/config/config.php';
 session_start();
 
+$homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
+$aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
+$logoSQL = "SELECT * FROM `header` WHERE `name` = 'logo'";
+$webnameSQL = "SELECT * FROM `header` WHERE `name` = 'website-name'";
+
+$home = mysqli_query($link, $homeSQL);
+$about = mysqli_query($link, $aboutSQL);
+$logo = mysqli_query($link, $logoSQL);
+$webnameQuery = mysqli_query($link, $webnameSQL);
+
+$homepage = mysqli_fetch_array($home);
+$aboutpage = mysqli_fetch_array($about);
+$logoIMG = mysqli_fetch_array($logo);
+$webname = mysqli_fetch_array($webnameQuery);
+
 $id_project = $_GET['ID'];
 $query = "SELECT * FROM projecten WHERE ID='$id_project'";
 $queryReacties = "SELECT * FROM reacties WHERE id_project='$id_project'";
@@ -34,16 +49,16 @@ $project = mysqli_fetch_array($resultaat);
 </head>
 
 <body>
-    <header id="title">
+<header id="title">
         <div class="container-fluid">
             <div class="row p-2">
                 <div class="col-md-2">
                     <div class="logo">
-                        <a href="./index.php">LOGO</a>
+                        <a href="./index.php"><img src="../assets/images/<?=$logoIMG["content"]; ?>"></a>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <h1 class="text-center">(Naam)'s Portfolio</h1>
+                <div class="col-md-8 py-5">
+                    <h1 class="text-center"><?=$webname["content"]; ?></h1>
                 </div>
             </div>
         </div>
@@ -109,10 +124,10 @@ $project = mysqli_fetch_array($resultaat);
                             <a href="../verwijder.php?soort=recept&id=<?= $id_recept; ?>" class="terug-btn">Verwijder</a> -->
 
                                 <li class="col-md-3 nav-item">
-                                    <a href="./aanpassen.php?id=<?= $id_project; ?>" class="terug-btn">Aanpassen</a>
+                                    <a href="../dashboard/project_editor.php?id=<?= $id_project; ?>" class="terug-btn">Aanpassen</a>
                                 </li>
                                 <li class="col-md-3 nav-item">
-                                    <a href="../verwijder.php?soort=recept&id=<?= $id_recept; ?>" class="terug-btn">Verwijder</a>
+                                    <a href="../dashboard/project_verwijder.php?soort=recept&id=<?= $id_recept; ?>" class="terug-btn">Verwijder</a>
                                 </li>
                             <?php
                             }

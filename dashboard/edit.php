@@ -51,7 +51,7 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
+              <a class="dropdown-item" href="project_creator.php">Add Project</a>
               </ul>
             </div>
           </div>

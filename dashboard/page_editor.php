@@ -43,11 +43,11 @@ $page = mysqli_fetch_array($stmt->get_result());
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item active"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="posts.php">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?= $_SESSION['email'] ?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
           <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
         </ul>
@@ -69,7 +69,7 @@ $page = mysqli_fetch_array($stmt->get_result());
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <a class="dropdown-item" role="button" data-toggle="modal" href="project_creator.php">Add Project</a>
+            <a class="dropdown-item" href="project_creator.php">Add Project</a>
             </div>
           </div>
         </div>
@@ -90,8 +90,14 @@ $page = mysqli_fetch_array($stmt->get_result());
       <div class="row">
         <div class="col-md-3">
         <div class="list-group">
-            <a href="index.html" class="list-group-item active main-color-bg">
+            <a href="index.php" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
+            </a>
+            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end">2</span>
             </a>
             <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
               <div>

@@ -41,11 +41,11 @@ require_once '../backend/config/config.php';
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item active"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="posts.php">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?=$_SESSION['email']?></a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
           <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
         </ul>

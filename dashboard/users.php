@@ -36,12 +36,11 @@ require "../backend/config/config.php"
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active"><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="posts.php">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
-          <li class="nav-item"><a class="nav-link">Welcome, <?php //if (!isset($_SESSION['email'])) $_SESSION['email']; else header('location: ../index.php'); 
-                                                            ?></a></li>
+          <li class="nav-item"><a class="nav-link">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
           <li class="nav-item"><a class="nav-link" href="../pages/loguit.php">loguit</a></li>
         </ul>
@@ -85,7 +84,7 @@ require "../backend/config/config.php"
       <div class="row">
         <div class="col-md-3">
           <div class="list-group">
-            <a href="index.html" class="list-group-item active main-color-bg">
+            <a href="index.php" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
             <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
@@ -135,48 +134,35 @@ require "../backend/config/config.php"
         </div>
         <div class="col-md-9">
           <!-- Website Overview -->
-          <div class="panel panel-default">
-            <div class="panel-heading main-color-bg">
-              <h3 class="panel-title">Users</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <input class="form-control" type="text" placeholder="Filter Users...">
-                </div>
-              </div>
-              <br>
-              <table class="table table-striped table-hover">
+          <div class="card">
+            <h3 class="card-header main-color-bg">Users</h3>
+            <div class="card-body">
+              <div class="table-users table-responsive-md">
+                <table class="table table-striped table-hover">
                 <tr>
-                  <th>Name</th>
+                  <th>FirstName</th>
+                  <th>LastName</th>
                   <th>Email</th>
+                  <th>CompanyName</th>
                   <th>Joined</th>
                   <th></th>
                 </tr>
+                <?php $result = mysqli_query($link, "SELECT * FROM user order by Created desc"); foreach($result as $result){ ?>
                 <tr>
+                  <td><?=$result['FirstName'] ?></td>
+                  <td><?=$result['LastName'] ?></td>
+                  <td><?=$result['Email'] ?></td>
+                  <td><?=$result['CompanyName'] ?></td>
+                  <td><?=$result['Created'] ?></td>
+                </tr>
+                  <?php } ?>
+                <!-- <tr>
                   <td>Jill Smith</td>
                   <td>jillsmith@gmail.com</td>
                   <td>Dec 12, 2016</td>
                   <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                </tr>
-                <tr>
-                  <td>Eve Jackson</td>
-                  <td>ejackson@yahoo.com</td>
-                  <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                </tr>
-                <tr>
-                  <td>Stephanie Landon</td>
-                  <td>landon@yahoo.com</td>
-                  <td>Dec 14, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                </tr>
-                <tr>
-                  <td>Mike Johnson</td>
-                  <td>mjohnson@gmail.com</td>
-                  <td>Dec 15, 2016</td>
-                  <td><a class="btn btn-default" href="edit.html">Edit</a> <a class="btn btn-danger" href="#">Delete</a></td>
-                </tr>
+                </tr> -->
+                
               </table>
             </div>
           </div>

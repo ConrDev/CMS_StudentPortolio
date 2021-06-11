@@ -30,11 +30,14 @@ if (in_array($file_ext, $allowed_file_types) && ($filesize < 2000000)) {
 		}
 		
 		move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir . $filename);
-		
+		// $link->query("UPDATE cv (ID, DateCreated ,Name) VALUES (1,'$date', '$filename')");
+		$stmt = $link->prepare("UPDATE `cv` SET `name` = ?, `DateCreated` = ? WHERE `id` = 1 ");
+        $stmt->bind_param("ss", $filename, $date);
+        $stmt->execute();
+        $stmt->close();
+		// $query = "SELECT ID FROM projecten WHERE Name = '$title'";
+		// $result = mysqli_query($link, $query);
 
 		exit;
     }
 ?>
-
-
-

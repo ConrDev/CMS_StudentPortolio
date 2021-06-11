@@ -13,7 +13,7 @@ Dropzone.options.cvUpload = {
           this.removeAllFiles();
           this.addFile(file);
                    
-        //   window.location = window.location.href+'?eraseCache=true';
+          // window.location = window.location.href+'?eraseCache=true';
         // window.location.href = '../dashboard/pages.php';
     });
     this.on("complete", function(file) {          
@@ -21,9 +21,8 @@ Dropzone.options.cvUpload = {
     });
     this.on("queuecomplete", function (file) {
         // window.location.href = '../dashboard/pages.php';
-    //   window.location = window.location.href+'?eraseCache=true';
+      // window.location = window.location.href+'?eraseCache=true';
   });
 }};
 
-console.log("yoodsad");
 

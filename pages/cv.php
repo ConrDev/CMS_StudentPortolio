@@ -1,7 +1,33 @@
 <?php
-
+require_once '../backend/config/config.php';
 session_start();
-require "../backend/config/config.php";
+
+$homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
+$aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
+$logoSQL = "SELECT * FROM `header` WHERE `name` = 'logo'";
+$webnameSQL = "SELECT * FROM `header` WHERE `name` = 'website-name'";
+
+$home = mysqli_query($link, $homeSQL);
+$about = mysqli_query($link, $aboutSQL);
+$logo = mysqli_query($link, $logoSQL);
+$webnameQuery = mysqli_query($link, $webnameSQL);
+
+$homepage = mysqli_fetch_array($home);
+$aboutpage = mysqli_fetch_array($about);
+$logoIMG = mysqli_fetch_array($logo);
+$webname = mysqli_fetch_array($webnameQuery);
+
+// $homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
+// $aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
+// $logoSQL = "SELECT * FROM `header` WHERE `name` = 'logo'";
+
+// $home = mysqli_query($link, $homeSQL);
+// $about = mysqli_query($link, $aboutSQL);
+// $logo = mysqli_query($link, $logoSQL);
+
+// $homepage = mysqli_fetch_array($home);
+// $aboutpage = mysqli_fetch_array($about);
+// $logoIMG = mysqli_fetch_array($logo);
 ?>
 
 <!doctype html>
@@ -19,16 +45,16 @@ require "../backend/config/config.php";
 </head>
 
 <body>
-    <header id="title">
+<header id="title">
         <div class="container-fluid">
             <div class="row p-2">
                 <div class="col-md-2">
                     <div class="logo">
-                        <a href="./index.php">LOGO</a>
+                        <a href="./index.php"><img src="../assets/images/<?=$logoIMG["content"]; ?>"></a>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <h1 class="text-center">(Naam)'s Portfolio</h1>
+                <div class="col-md-8 py-5">
+                    <h1 class="text-center"><?=$webname["content"]; ?></h1>
                 </div>
             </div>
         </div>
