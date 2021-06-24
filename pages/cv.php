@@ -2,6 +2,23 @@
 require_once '../backend/config/config.php';
 session_start();
 
+if (isset($_SESSION['unique_link']) || isset($_GET['link'])) {
+    if (isset($_GET['link'])) {
+    $_SESSION["unique_link"] = $_GET['link'];
+}
+    $link = $_SESSION["unique_link"];
+   $query = "SELECT link FROM invites WHERE link = '$link'";
+    if(mysqli_query($mysqli, $query)) {
+        //Pagina
+    } else {
+        echo "verkeerde code";
+        // header("Location: index.php");
+    }
+} else {
+    echo "geen link";
+    // header("Location: index.php");
+}
+
 $homeSQL = "SELECT * FROM `pages` WHERE `page_ID` = 1";
 $aboutSQL = "SELECT * FROM `pages` WHERE `page_ID` = 2";
 $logoSQL = "SELECT * FROM `header` WHERE `name` = 'logo'";

@@ -1,6 +1,6 @@
-<?php 
+<?php
+require_once '../backend/config/config.php';
 session_start();
-require "../backend/config/config.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,13 +15,13 @@ require "../backend/config/config.php";
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/dashboard.css">
-
-  <script src="http://cdn.ckeditor.com/5/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="../JS/dropzone-5.7.0/dist/dropzone.css">
+  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light ">
+  <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <a class="navbar-brand" href="#">CMS</a>
       <!-- <button type="button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -65,7 +65,6 @@ require "../backend/config/config.php";
           </div>
         </div>
       </div>
-    </div>
   </header>
 
   <section id="breadcrumb">
@@ -128,46 +127,23 @@ require "../backend/config/config.php";
             </div>
           </div> -->
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 mb-5">
           <!-- Website Overview -->
           <div class="card">
-            <h3 class="card-header main-color-bg">Pages</h3>
+            <h3 class="card-header main-color-bg">invite</h3>
             <div class="card-body">
-              <div class="table-users table-responsive-md">
-                <table class="table table-striped table-hover">
-                <thead>
-                  <th>Title</th>
-                  <th>Openbaar</th>
-                  <th>Gewijzigd</th>
-                  <th></th>
-
-                </thead>
-                <tr>
-                  <td><a href="../index.php">Home</a></td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 12, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="page_editor.php?pageID=1">Bewerk</a></td>
-                </tr>
-                <tr>
-                  <td><a href="../pages/about.php">About Me</a></td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="page_editor.php?pageID=2">Bewerk</a></td>
-                </tr>
-                <tr>
-                  <td><a href="../pages/about.php">C.V.</a></td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="cv_upload.php">Bewerk</a></td>
-                  <td><a class="btn btn-outline-dark" href="cv_invite.php">uitnodigen</a></td>
-                </tr>
-                <tr>
-                  <td><a href="../pages/about.php">Projecten</a></td>
-                  <td><span class="fas fa-check" aria-hidden="true"></span></td>
-                  <td>Dec 14, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="projecten.php">Bewerk</a></td>
-                </tr>
-              </table>
+              <form action="../backend/controllers/cv_invite_process.php" method="POST">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>email</label>
+                    <input name="email" type="text" name="email" class="form-control" placeholder="E-mailadress">
+                  </div>
+                  <div class="dropdown-divider my-4"></div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-default btn-block" name="submit">uitnodigen</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
 
@@ -190,7 +166,7 @@ require "../backend/config/config.php";
   <div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form action="../backend/controllers/projectcreator.php" method="POST">
+        <form action="../../backend/controllers/pagecreator.php" method="POST">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Add Page</h4>
@@ -228,11 +204,13 @@ require "../backend/config/config.php";
   </div>
 
   <script>
-    CKEDITOR.replace('editor1');
-  </script>
+    // CKEDITOR.replace('editor');
+    </script>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+  <script src="http://localhost/CMS_StudentPortolio/JS/dropzone.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
