@@ -74,7 +74,7 @@ session_start();
     <div class="container">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Pages</li>
+        <li class="breadcrumb-item active" aria-current="page">project</li>
       </ol>
     </div>
   </section>
@@ -87,7 +87,13 @@ session_start();
             <a href="index.php" class="list-group-item active main-color-bg">
               <span class="fas fa-cog" aria-hidden="true"></span> Dashboard
             </a>
-            <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a href="header.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div>
+                <span class="fas fa-heading mb-1" aria-hidden="true"></span> Header
+              </div>
+              <span class="badge badge-pill badge-dark align-items-end">2</span>
+              </a>
+            <a href="pages.php" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">  
               <div>
                 <span class="fas fa-list-alt mb-1" aria-hidden="true"></span> Pages
               </div>
@@ -125,17 +131,17 @@ session_start();
         <div class="col-md-9 mb-5">
           <!-- Website Overview -->
           <div class="card">
-            <h3 class="card-header main-color-bg">Pages</h3>
+            <h3 class="card-header main-color-bg">Project</h3>
             <div class="card-body">
 
               <form action="../backend/controllers/projectcreator.php" method="POST">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Pagina Naam</label>
+                    <label>Project name</label>
                     <input name="title" type="text" name="title" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Inhoud</label>
+                    <label>content</label>
                     <!-- <textarea name="editor2" class="form-control" placeholder="Page Body"></textarea> -->
                     <textarea id="editor" name="editor" class="form-control" placeholder="inhoud"></textarea>
                   </div>
@@ -147,11 +153,11 @@ session_start();
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" class="custom-control-input" id="published" name="published">
-                      <label class="custom-control-label text-muted" for="published">Gepubliseerd</label>
+                      <label class="custom-control-label text-muted" for="published">published</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <button type="submit" class="btn btn-default btn-block" name="submit">Bewerken</button>
+                    <button type="submit" class="btn btn-default btn-block" name="submit">edit</button>
                   </div>
                 </div>
               </form>
@@ -179,7 +185,7 @@ session_start();
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CSM Dashboard</p>
+      <p class="copyright">CMS Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>

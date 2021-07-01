@@ -2,6 +2,8 @@
 require_once '../backend/config/config.php';
 session_start();
 
+
+
 $id = 1;
 
 $stmt = $link->prepare("SELECT * FROM `cv` WHERE `ID` = ?");
@@ -9,6 +11,8 @@ $stmt->bind_param("s", $id);
 $stmt->execute();
 
 $cv = mysqli_fetch_array($stmt->get_result());
+
+
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +35,6 @@ $cv = mysqli_fetch_array($stmt->get_result());
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <a class="navbar-brand" href="#">CMS</a>
@@ -385,20 +388,21 @@ $cv = mysqli_fetch_array($stmt->get_result());
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
   <script src="../JS/grapes.min.js"></script>
   <script>
     "use strict";
-
-
+    // window.jsPDF = window.jspdf.jsPDF;
     const LandingPage = {
       html: `<?= preg_replace("/\r|\n/", "", $cv["Content"]); ?>`,
-      css: `<?= include_once('cv/template1.css'); ?>`,
+      css: `<?= preg_replace("/\r|\n/", "", $cv["Style"]); ?>`,
     };
-
+    
 
     grapesjs.plugins.add('example-plugin', function(editor, options) {
       // remove the devices switcher
@@ -441,9 +445,9 @@ $cv = mysqli_fetch_array($stmt->get_result());
         <div class="input-group">
           <span class="input-group-btn">
 
-            <button id="save_resume"class="btn btn-success">
+            <a type="submit" name="save" id="save_resume" class="btn btn-success">
                 <i class="far fa-save"></i> Save
-                </button>
+                </a>
             </span>
             <span class="input-group-btn"></span>
         </div>`
@@ -451,84 +455,94 @@ $cv = mysqli_fetch_array($stmt->get_result());
 
 
     });
-
-    $(document).ready(function() {
+    $(document).ready(() => {
+      // import { jsPDF } from "jspdf";
       "use strict";
-      $("#save_resume").on("click", function(e) {
+      $("#save_resume").on("click", (e) => {
         e.preventDefault();
+        var pdf = new jsPDF();
+        
         var content = editor.getHtml();
+        // console.log(content);
         var style = editor.getCss();
-        var name = $("input[name='name']").val();
-        var id = $("input[name='id']").val();
-        var _token = $("input[name='_token']").val();
-        var action = $("input[name='action']").val();
+        // console.log(style);
+        var name = "cv-portfolio";
+        var id = 1;
+        var action = "update";
 
-        var url_post = '';
-        var data = '';
-        if (action == "create") {
-          url_post = "{{ route('resume.save') }}";
-          data = {
-            _token: _token,
-            name: name,
-            content: content,
-            style: style
-          };
-        }
-        if (action == "update") {
+        // if (action == "create") {
+        //   url_post = "{{ route('resume.save') }}";
+        //   data = {
+        //     name: name,
+        //     content: content,
+        //     style: style
+        //   };
+        // }
+        var url_post = "../backend/controllers/cv_update.php";
+        // console.log(data);
 
-          url_post = "{{ route('resume.update') }}";
-          data = {
-            _token: _token,
-            id: id,
-            name: name,
-            content: content,
-            style: style
-          };
-        }
         if (url_post) {
           $.ajax({
             url: url_post,
-            type: 'POST',
-            data: data,
-            success: function(data) {
-              if ($.isEmptyObject(data.error)) {
-                var url = "{{ url('resume/exportpdf') }}" + "/" + data.id;
-                Swal.fire({
-                  title: "Success?",
-                  html: data.success,
-                  showCloseButton: true,
-                  icon: "success",
-                  confirmButtonText: "Export PDF",
-                }).then((res) => {
-                  if (res.value) {
-                    window.open(url, '_blank');
-                  }
-                });
+            method: 'POST',
+            data: {
+              content: content,
+              style: style
+            },
+            success: function(res) {
+              if ($.isEmptyObject(res.error)) {
+                // console.log(data);
+                pdf.fromHTML(
+                  content, // HTML string or DOM elem ref.
+                  15, // x coord
+                  15,
 
-              } else {
+                  function(dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('../assets/cv/cv-export.pdf');
+                  });
+                // pdf.save('../assets/cv/cv-export.pdf');
 
-                var error = printErrorMsg(data.error);
-                Swal.fire({
-                  title: 'Error!',
-                  html: error,
-                  icon: 'error',
-                  confirmButtonText: 'OK'
-                });
-
+                var url = "../pages/cv.php";
+                window.open(url, '_blank');
+                // Swal.fire({
+                //   title: "Success?",
+                //   html: data.success,
+                //   showCloseButton: true,
+                //   icon: "success",
+                //   confirmButtonText: "Export PDF ",
+                // }).then((res) => {
+                //   if (res.value) {
+                //     window.open(url, '_blank');
+                //   }
+                // });
               }
             }
           });
-        }
-      });
 
-      function printErrorMsg(msg) {
-        var mess = "";
-        $.each(msg, function(key, value) {
-          mess += '<li>' + value + '</li>';
-        });
-        return mess;
-      }
+
+        } else {
+
+          // var error = printErrorMsg(data.error);
+          // Swal.fire({
+          //   title: 'Error!',
+          //   html: error,
+          //   icon: 'error',
+          //   confirmButtonText: 'OK'
+          // });
+
+        }
+      })
     });
+
+    function printErrorMsg(msg) {
+      var mess = "";
+      $.each(msg, function(key, value) {
+        mess += '<li>' + value + '</li>';
+      });
+      return mess;
+    }
 
 
     // CKEDITOR.replace("editor", {

@@ -46,7 +46,7 @@ require_once '../backend/config/config.php';
         </ul>
         <ul class="navbar-nav navbar-right">
           <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
-          <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index.php">Go Back</a></li>
           <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
         </ul>
       </div>
@@ -58,7 +58,7 @@ require_once '../backend/config/config.php';
     <div class="container">
       <div class="row">
         <div class="col-md-10">
-          <h1><span class="fas fa-cog" aria-hidden="true"></span> Verwijder <small>Manage page</small></h1>
+          <h1><span class="fas fa-cog" aria-hidden="true"></span> delete <small>Manage page</small></h1>
         </div>
         <div class="col-md-2">
           <div class="dropdown create">
@@ -80,14 +80,14 @@ require_once '../backend/config/config.php';
   ?>
 
     <div class="container">
-    <p>weet u zeker dat u <?=$row['Name']?> wilt verwijderen?</p>
-        <button onclick="<?php echo 'verwijder(' . $ID . ')'; ?>" class="btn btn-danger">Verwijder</button>
+    <p>are you sure <?=$row['Name']?> wanna delete?</p>
+        <button onclick="<?php echo 'verwijder(' . $ID . ')'; ?>" class="btn btn-danger">Delete</button>
     </div>
 <?php } ?>
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CSM Dashboard</p>
+      <p class="copyright">CMS Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>

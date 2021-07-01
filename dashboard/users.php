@@ -34,15 +34,15 @@ require "../backend/config/config.php"
         </button> -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"><a class="nav-link" href="index.php">Dashboard</a></li>
+          <li class="nav-item "><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="pages.php">Pages</a></li>
           <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
+          <li class="nav-item active"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
           <li class="nav-item"><a class="nav-link">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
-          <li class="nav-item"><a class="nav-link" href="../pages/loguit.php">loguit</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pages/loguit.php">log out</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -62,8 +62,7 @@ require "../backend/config/config.php"
               <span class="caret"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addPage">Add Project</a>
-              <a class="dropdown-item" href="" role="button" data-toggle="modal" data-target="#addUser">Add User</a>
+            <a class="dropdown-item" href="project_creator.php">Add Project</a>
               </ul>
             </div>
           </div>

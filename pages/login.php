@@ -25,7 +25,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
-      <a class="navbar-brand" href="#">CMS</a>
+      <a class="navbar-brand" href="../">Home</a>
       <div id="navbar" class="collapse navbar-collapse">
 
       </div>

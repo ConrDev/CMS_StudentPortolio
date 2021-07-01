@@ -140,31 +140,35 @@ require "../backend/config/config.php";
                   <th>Openbaar</th>
                   <th>Gewijzigd</th>
                   <th></th>
+                  <th></th>
 
                 </thead>
                 <tr>
                   <td><a href="../index.php">Home</a></td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 12, 2016</td>
+                  <td></td>
                   <td><a class="btn btn-outline-dark" href="page_editor.php?pageID=1">Bewerk</a></td>
                 </tr>
                 <tr>
                   <td><a href="../pages/about.php">About Me</a></td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
+                  <td></td>
                   <td><a class="btn btn-outline-dark" href="page_editor.php?pageID=2">Bewerk</a></td>
                 </tr>
                 <tr>
                   <td><a href="../pages/about.php">C.V.</a></td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 13, 2016</td>
-                  <td><a class="btn btn-outline-dark" href="cv_upload.php">Bewerk</a></td>
                   <td><a class="btn btn-outline-dark" href="cv_invite.php">uitnodigen</a></td>
+                  <td><a class="btn btn-outline-dark" href="cv_creator.php">Bewerk</a></td>
                 </tr>
                 <tr>
                   <td><a href="../pages/about.php">Projecten</a></td>
                   <td><span class="fas fa-check" aria-hidden="true"></span></td>
                   <td>Dec 14, 2016</td>
+                  <td></td>
                   <td><a class="btn btn-outline-dark" href="projecten.php">Bewerk</a></td>
                 </tr>
               </table>

@@ -39,14 +39,14 @@ require_once '../backend/config/config.php';
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="index.php">Dashboard</a></li>
-          <li class="nav-item active"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
+          <li class="nav-item "><a class="nav-link" href="pages.php">Pages</a></li>
+          <li class="nav-item active"><a class="nav-link" href="projecten.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
           <li class="nav-item"><a class="nav-link" href="#">Welcome, <?php if (isset($_SESSION['email'])) { echo $_SESSION['email']; } else { header('location: ../index.php'); } ?></a></li>
           <li class="nav-item"><a class="nav-link" href="../index.php">Back</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pages/login.php">Logout</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->
@@ -137,7 +137,7 @@ require_once '../backend/config/config.php';
         <div class="col-md-9">
           <!-- Website Overview -->
           <div class="card">
-            <h3 class="card-header main-color-bg">Projecten</h3>
+            <h3 class="card-header main-color-bg">Projects</h3>
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12">
@@ -149,8 +149,8 @@ require_once '../backend/config/config.php';
                 <table class="table table-striped table-hover">
                 <thead>
                   <th>Title</th>
-                  <th>Openbaar</th>
-                  <th>Gewijzigd</th>
+                  <th>Public</th>
+                  <th>Changed</th>
                   <th></th>
                   <th></th>
                 </thead>
@@ -159,8 +159,8 @@ require_once '../backend/config/config.php';
                   <td><?=$result['Name'] ?></td>
                   <td><span class="fas fa-<?=$icon ?>" aria-hidden="true"></span></td>
                   <td><?=$result['DateEdited'] ?></td>
-                  <td><a class="btn btn-outline-dark" href="project_editor.php?id=<?=$result['ID']; ?>">Bewerk</a></td>
-                  <td><a class="btn btn-danger" href="project_verwijder.php?id=<?=$result['ID']; ?>">Verwijder</a></td>
+                  <td><a class="btn btn-outline-dark" href="project_editor.php?id=<?=$result['ID']; ?>">Edit</a></td>
+                  <td><a class="btn btn-danger" href="project_verwijder.php?id=<?=$result['ID']; ?>">Delete</a></td>
                 </tr>
                   <?php } ?>
               </table>
@@ -174,7 +174,7 @@ require_once '../backend/config/config.php';
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CSM Dashboard</p>
+      <p class="copyright">CMS Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>

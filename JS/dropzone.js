@@ -18,9 +18,12 @@ Dropzone.options.cvUpload = {
     });
     this.on("complete", function(file) {          
         // window.location = ;  
+      console.log("ola seniorita3213");
+
     });
     this.on("queuecomplete", function (file) {
         // window.location.href = '../dashboard/pages.php';
+      console.log("ola seniorita3213");
       // window.location = window.location.href+'?eraseCache=true';
   });
 }};

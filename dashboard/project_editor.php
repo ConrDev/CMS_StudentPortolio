@@ -140,11 +140,11 @@ $page = mysqli_fetch_array($stmt->get_result());
               <form action="../backend/controllers/project_process.php?id=<?=$_GET['id']; ?>" method="POST">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Pagina Naam</label>
+                    <label>Page name</label>
                     <input name="title" type="text" name="title" class="form-control" value="<?=$page["Name"];?>">
                   </div>
                   <div class="form-group">
-                    <label>Inhoud</label>
+                    <label>content</label>
                     <!-- <textarea name="editor2" class="form-control" placeholder="Page Body"></textarea> -->
                     <textarea id="editor" name="editor" class="form-control" placeholder="inhoud"></textarea>
                   </div>
@@ -156,11 +156,11 @@ $page = mysqli_fetch_array($stmt->get_result());
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="published" name="published" checked="<?=$page["Published"]; ?>">
-                      <label class="custom-control-label text-muted" for="published">Gepubliseerd</label>
+                      <label class="custom-control-label text-muted" for="published">published</label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <button type="submit" class="btn btn-default btn-block" name="submit">Bewerken</button>
+                    <button type="submit" class="btn btn-default btn-block" name="submit">edit</button>
                   </div>
                 </div>
               </form>
@@ -188,7 +188,7 @@ $page = mysqli_fetch_array($stmt->get_result());
 
   <footer id="footer">
     <div class="row justify-content-center mr-auto">
-      <p class="copyright">CSM Dashboard</p>
+      <p class="copyright">CMS Dashboard</p>
       <p class="splitter px-2">|</p>
       <p class="credits">created with ❤️ by WeDevign</p>
     </div>

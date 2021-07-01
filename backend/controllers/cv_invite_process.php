@@ -19,11 +19,11 @@ function generateRandomString($length = 20) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
 $unique_link = generateRandomString();
-$data = mysqli_query($link, "SELECT * FROM invites WHERE email = '$to_Email'");
-$row = $data->fetch_array();
-            if(isset($to_Email) && isset($row['email'])) {
-                mysqli_query($link, "INSERT INTO invites (ID, email, link) VALUES ('','$to_Email', '$unique_link')");
-                
+    mysqli_query($link, "INSERT INTO invites (ID, email, link) VALUES ('','$to_Email', '$unique_link')");
+
+            if(isset($to_Email)) {
+             $data =  mysqli_query($link, "SELECT * FROM invites WHERE email = '$to_Email'");
+                $row = $data->fetch_array();
                 try {
                     //Server settings
                     $mail->isSMTP();                                              // Set mailer to use SMTP
@@ -31,6 +31,7 @@ $row = $data->fetch_array();
                     $mail->SMTPAuth = true;                                       // Enable SMTP authentication
                     $mail->Username = 'c11479dbeef6ca';                           // SMTP username
                     $mail->Password = '6a857885fbaba8';                           // SMTP password
+                    $mail->SMTPSecure = 'tls';
                     $mail->Port = 2525;
 
                     $mail->setFrom('noreply@example.com', 'Admin');
@@ -38,9 +39,10 @@ $row = $data->fetch_array();
 
                     $mail->isHTML(true);
                     $mail->Subject = 'uitnodiging CV bekijken';
-                    $mail->Body    = 'beroeps45.ict-lab.nl/cms_StudentPortolio/pages/cv.php?link=' . $row['link'];
+                    $mail->Body    = 'uitnodiging code:' . $row['link'];
 
                     $mail->send();
+                    $_SESSION['unique_code'] = $unique_link;    
                     echo 'Message has been sent';
                 } catch (Exception $e) {
                     echo 'Message could not be sent.';

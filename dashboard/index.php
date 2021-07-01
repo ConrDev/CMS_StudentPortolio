@@ -36,7 +36,7 @@ require "../backend/config/config.php"
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active"><a class="nav-link" href="index.php">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href="pages.php">Pages</a></li>
-          <li class="nav-item"><a class="nav-link" href="projecten.php">Projecten</a></li>
+          <li class="nav-item"><a class="nav-link" href="projecten.php">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
         </ul>
         <ul class="navbar-nav navbar-right">
@@ -178,7 +178,7 @@ require "../backend/config/config.php"
                   <thead>
                     <tr>
                       <th>Email</th>
-                      <th>Bedrijf's naam</th>
+                      <th>company name</th>
                       <th>Joined</th>
                     </tr>
                   </thead>

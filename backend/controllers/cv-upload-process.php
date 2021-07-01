@@ -12,7 +12,7 @@ $file_ext = substr($filename, strripos($filename, '.')); // get file name
 
 $filesize = $_FILES["file"]["size"];
 
-$allowed_file_types = array('.pdf');	
+$allowed_file_types = array('.pdf','.png');	
 
 if (in_array($file_ext, $allowed_file_types) && ($filesize < 2000000)) {
 

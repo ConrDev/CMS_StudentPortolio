@@ -156,7 +156,7 @@ session_start();
                                         <td>
                                             <img class="mb-3" src="../assets/images/<?= $logo["content"]; ?>">
                                             <div class="form-group">
-                                                <label for="exampleFormControlFile1">Kies een logo</label>
+                                                <label for="exampleFormControlFile1">choose logo</label>
                                                 <!-- <input type="file" name="file" id="file"> -->
                                                 <form action="../backend/controllers/header-update.php" class="dropzone" id="cv_upload" method="POST" enctype="multipart/form-data">
                                                     <div class="fallback">
@@ -170,13 +170,13 @@ session_start();
                                     </tr>
                                     <tr>
                                         <form action="../backend/controllers/header-update.php" class="webname" id="webname" method="POST" enctype="multipart/form-data">
-                                            <td><b>Website Naam</b></td>
+                                            <td><b>Website Name</b></td>
                                             <td>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" value="<?= $webname["content"]; ?>" name="webname">
                                                 </div>
                                             </td>
-                                            <td><button class="btn btn-outline-dark auto" href="../backend/controllers/header-update.php" type="submit">Bewerk</button></td>
+                                            <td><button class="btn btn-outline-dark auto" href="../backend/controllers/header-update.php" type="submit">change</button></td>
                                         </form>
                                     </tr>
                                 </table>

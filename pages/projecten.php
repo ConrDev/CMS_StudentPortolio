@@ -48,7 +48,7 @@ $resultaat = mysqli_query($link, $query);
             <div class="row p-2">
                 <div class="col-md-2">
                     <div class="logo">
-                        <a href="./index.php"><img src="../xassets/images/<?=$logoIMG["content"]; ?>"></a>
+                        <a href="./index.php"><img src="../assets/images/<?=$logoIMG["content"]; ?>"></a>
                     </div>
                 </div>
                 <div class="col-md-8 py-5">
