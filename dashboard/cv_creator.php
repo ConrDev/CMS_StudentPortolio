@@ -402,7 +402,7 @@ $cv = mysqli_fetch_array($stmt->get_result());
       html: `<?= preg_replace("/\r|\n/", "", $cv["Content"]); ?>`,
       css: `<?= preg_replace("/\r|\n/", "", $cv["Style"]); ?>`,
     };
-    
+
 
     grapesjs.plugins.add('example-plugin', function(editor, options) {
       // remove the devices switcher
@@ -460,15 +460,17 @@ $cv = mysqli_fetch_array($stmt->get_result());
       "use strict";
       $("#save_resume").on("click", (e) => {
         e.preventDefault();
-        var pdf = new jsPDF();
+        // var pdf = new jsPDF();
         
         var content = editor.getHtml();
         // console.log(content);
-        var style = editor.getCss();
-        // console.log(style);
+        var style = editor.getCss({ avoidProtected: true });
+        console.log(style);
         var name = "cv-portfolio";
         var id = 1;
         var action = "update";
+
+        var pdfhtml = "<html><style>"+style+"</style><body>"+content+"</body></html>"
 
         // if (action == "create") {
         //   url_post = "{{ route('resume.save') }}";
@@ -492,18 +494,23 @@ $cv = mysqli_fetch_array($stmt->get_result());
             success: function(res) {
               if ($.isEmptyObject(res.error)) {
                 // console.log(data);
-                pdf.fromHTML(
-                  content, // HTML string or DOM elem ref.
-                  15, // x coord
-                  15,
+                // pdf.fromHTML(
+                //   content, // HTML string or DOM elem ref.
+                //   15, // x coord
+                //   15,
 
-                  function(dispose) {
-                    // dispose: object with X, Y of the last line add to the PDF 
-                    //          this allow the insertion of new lines after html
-                    pdf.save('../assets/cv/cv-export.pdf');
-                  });
+                //   function(dispose) {
+                //     // dispose: object with X, Y of the last line add to the PDF 
+                //     //          this allow the insertion of new lines after html
+                //     pdf.save('../assets/cv/cv-export.pdf');
+                //   });
                 // pdf.save('../assets/cv/cv-export.pdf');
-
+                // $('#savepdf').click(function() {
+                //   pdf.fromHTML(pdfhtml.html(), 15, 15, {
+                //     'width': 170,
+                //   });
+                //   pdf.save('test.pdf');
+                // })
                 var url = "../pages/cv.php";
                 window.open(url, '_blank');
                 // Swal.fire({
@@ -554,10 +561,10 @@ $cv = mysqli_fetch_array($stmt->get_result());
 
     var editor = grapesjs.init({
       container: '#gjs',
-      protectedCss: ` body {font-family: 'Roboto', sans-serif !important;max-width: 210mm;min-height: 290mm;height:auto;margin: 20px auto;background: #fff;box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);}`,
+      protectedCss: '',
       components: LandingPage.html,
       canvas: {
-        styles: ['https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i|Raleway:300,300i,400,400i,500,500i,700,700i|Lato:300,300i,400,400i,500,500i,700,700i|Montserrat:300,300i,400,400i,500,500i,700,700i|Spartan:300,300i,400,400i,500,500i,700,700i&subset=latin,latin-ext', "https://use.fontawesome.com/releases/v5.7.0/css/all.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"],
+        styles: ["https://use.fontawesome.com/releases/v5.7.0/css/all.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"],
         scripts: ['https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'],
       },
       style: LandingPage.css,

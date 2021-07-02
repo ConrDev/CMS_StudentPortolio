@@ -195,19 +195,13 @@ $webname = mysqli_fetch_array($webnameQuery);
                     <?php
                     } else {
                     ?>
-                        <!-- <iframe style="width: 100%; height: 30vw;" src="../assets/cv/<?= $row['Name']; ?>" frameborder="0"></iframe>  -->
-                        <div id="exportpdf">
-                            <html>
-                                <style type="text/css">
-                                    <?= preg_replace("/\r|\n/", "", $cv["Style"]); ?>
-                                </style>
-
-                                <body>
-                                    <?= preg_replace("/\r|\n/", "", $cv["Content"]); ?>
-                                </body>
-                            </html>
-
+                        <button class="btn " type="application/pdf" id="dl" type="button">Download</button>
+                        <!-- <iframe id="pdf" name="pdf" style="width: 750px; height: 900px;" frameborder="0"></iframe> -->
+                        <div id="pdf">
+                            <!-- <iframe id=></iframe> -->
                         </div>
+
+
                     <?php } ?>
                 </div>
             </div>
@@ -228,6 +222,87 @@ $webname = mysqli_fetch_array($webnameQuery);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="../JS/html2pdf.bundle.min.js"></script>
+    <script>
+        // var doc = document.getElementById('pdf').contentWindow.document;
+        // var cssLink = document.createElement("link");
+        // cssLink.href = "https://use.fontawesome.com/releases/v5.7.0/css/all.css"; 
+        // cssLink.rel = "stylesheet"; 
+        // cssLink.type = "text/css"; 
+        // frames['pdf'].document.head.appendChild(cssLink);
+        // const jsPDF = require('jspdf');
+
+        // window.html2pdf = window.html2pdf.html2pdf;
+        "use strict";
+
+        var html = `<html><head><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"><style><?= preg_replace("/\r|\n/", "", $cv["Style"]); ?></style></head><body><?= preg_replace("/\r|\n/", "", $cv["Content"]); ?></body></html>`;
+
+        var iframe = document.createElement('iframe');
+        var iframedoc;
+        iframe.setAttribute('id', 'pdfframe');
+        iframe.frameBorder = 0;
+        iframe.width = 750;
+        iframe.height = 900;
+        $('#pdf').append($(iframe));
+        setTimeout(function() {
+            iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+            $('body', $(iframedoc)).html(html);
+            html2canvas(iframedoc.body, {
+                onrendered: function(canvas) {
+                    $('body', $('#pdf')).append(canvas);
+                    $('body', $(document)).remove(iframe);
+                    // $('#pdfframe').append($('#pdf'));
+                }
+            });
+        }, 10);
+        // doc.open();
+        // doc.write(`<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"><style><?= preg_replace("/\r|\n/", "", $cv["Style"]); ?></style> <?= preg_replace("/\r|\n/", "", $cv["Content"]); ?>`);
+        // doc.close();
+
+        function toPDF() {
+
+            var htmlpdf = new html2pdf();
+            
+            const element = document.getElementsByClassName('html2pdf__overlay');
+
+            // var source = htmlpdf.from(html).save();
+
+            var pdf = new jsPDF('p', 'pt', 'letter', 'a4');
+            pdf.addFont('../fonts/fontawesome-webfont.ttf', 'FontAwesome', 'normal', 'StandardEncoding');
+            pdf.setFont('FontAwesome');
+
+            pdf.fromHTML(html, 0.5,0.5, {'width': 1080});
+            pdf.save();
+        //     var pdf = new jsPDF('p', 'pt', 'letter', 'a4');
+
+        //     // // source can be HTML-formatted string, or a reference
+        //     // // to an actual DOM element from which the text will be scraped.
+        //     // source = $("#pdfframe")[0];
+        //     // // all coords and widths are in jsPDF instance's declared units
+        //     // // 'inches' in this case
+        //     // pdf.fromHTML(
+        //     //     source // HTML string or DOM elem ref.
+        //     //     , 0.5 // x coord
+        //     //     , 0.5 // y coord
+        //     //     , {
+        //     //         'width': 1080 // max width of content on PDF
+        //     //     }
+        //     // )
+
+        //     // pdf.save('Test.pdf');
+        //     var frame = $('pdfframe');
+        //     var framedoc = iframe.contentDocument || iframe.contentWindow.document;
+        //     pdf.fromHTML(framedoc, 15, 15);
+        //     pdf.save("sample.pdf");
+        }
+
+        $('#dl').click(() => {
+            toPDF();
+        })
+
+    </script>
 </body>
 
 </html>
